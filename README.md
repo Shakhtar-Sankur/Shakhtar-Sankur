@@ -47,4 +47,4 @@ run**, instead of reporting 13/13 and passing while testing nothing.
 
 ---
 
-📍 New Delhi, India · 📧 sankur.kundu.tw@gmail.com · 🔗 [LinkedIn](https://linkedin.com/in/sankur-kundu)
+📍 Bhubaneswar, India · 📧 sankur.kundu.tw@gmail.com · 🔗 [LinkedIn](https://linkedin.com/in/sankur-kundu)
