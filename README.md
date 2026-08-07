@@ -1,8 +1,10 @@
 # Sankur Kundu
 
-**Founder & engineer at Gigzen.** I build systems that measure themselves.
+**Co-founder & CTO at Gigzen.** I build systems that measure themselves.
 
 Two products, both written solo, from Postgres policies to the release build.
+
+🌐 [gigzen](https://shakhtar-sankur.github.io/gigzen/) · 🧑‍💻 [portfolio](https://shakhtar-sankur.github.io)
 
 ---
 
@@ -47,4 +49,4 @@ run**, instead of reporting 13/13 and passing while testing nothing.
 
 ---
 
-📍 Bhubaneswar, India · 📧 sankur.kundu.tw@gmail.com · 🔗 [LinkedIn](https://linkedin.com/in/sankur-kundu)
+📍 New Delhi, India · 📧 sankur.kundu.tw@gmail.com · 🔗 [LinkedIn](https://linkedin.com/in/sankur-kundu)
