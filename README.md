@@ -1,6 +1,6 @@
 # Sankur Kundu
 
-**Co-founder & CTO at Gigzen.** I build systems that measure themselves.
+**Co-founder & Director, Technology at Gigzen.** I build systems that measure themselves.
 
 Two products, both written solo, from Postgres policies to the release build.
 
