@@ -13,7 +13,9 @@ Two products, both written solo, from Postgres policies to the release build.
 A Swiggy rider, an Uber driver and an Amazon Flex courier are often the same person, but no
 platform connects those identities. Buzz Buzz is the professional and social layer across all of
 them — GPS trip tracking with live earnings, a community feed, chat with read receipts, and 16
-languages including right-to-left Arabic. **Free for workers, permanently.**
+languages including right-to-left Arabic. It keeps working underground: anything written
+without a signal is queued on the device and sent when the connection returns.
+**Free for workers, permanently.**
 
 `React` `TypeScript` `Capacitor` `Supabase` — 13,235 lines · 17 tables · 48 row-level-security policies
 
@@ -28,6 +30,9 @@ Built to test Buzz Buzz, and deliberately kept free of any reference to it — s
 first customer rather than its purpose.
 
 `Node` `zero runtime dependencies` — 13-method adapter contract · 3 production guards · 20/20 self-tests
+
+`populace demo` runs the whole thing against a bundled fake app that has a real bug in it — no
+backend, no signup. CI fails the build if that bug ever stops being found.
 
 ---
 
