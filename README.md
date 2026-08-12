@@ -2,70 +2,106 @@
 
 **Co-founder & Director, Technology at Gigzen.** I build systems that measure themselves.
 
-Two products, both written solo, from Postgres policies to the release build.
+Two products, both written solo, from Postgres policies to the signed release build. One is a
+gig-worker platform shipping in 16 languages across 49 countries. The other is the testing tool I
+had to build to prove the first one worked — and it found five bugs in it that a full manual test
+had missed.
 
-🌐 [gigzen](https://shakhtar-sankur.github.io/gigzen/) · 🧑‍💻 [portfolio](https://shakhtar-sankur.github.io)
+🌐 [gigzen](https://shakhtar-sankur.github.io/gigzen/) · 🧑‍💻 [portfolio](https://shakhtar-sankur.github.io) · 📧 sankur.kundu.tw@gmail.com
 
 ---
 
-### 🐝 [Buzz Buzz](https://github.com/Shakhtar-Sankur/buzz-buzz) — a home for gig workers
+## 🧪 [Populace](https://github.com/Shakhtar-Sankur/populace) — test what needs more than one person
 
-A Swiggy rider, an Uber driver and an Amazon Flex courier are often the same person, but no
-platform connects those identities. Buzz Buzz is the professional and social layer across all of
-them — GPS trip tracking with live earnings, a community feed, chat with read receipts, and 16
-languages including right-to-left Arabic. It keeps working underground: anything written
-without a signal is queued on the device and sent when the connection returns.
-**Free for workers, permanently.**
+Presence. Live sync. Read receipts. Notification fan-out. "Does deleting this remove it for
+everyone." Every permission rule you wrote. **None of it can be tested by one developer with one
+account**, however carefully they tap through every screen.
 
-`React` `TypeScript` `Capacitor` `Supabase` — 13,235 lines · 17 tables · 48 row-level-security policies
+Populace gives you a few dozen believable people who sign up, move through a real city, post, like,
+comment, message each other and join groups — as **real authenticated users**, through **your own
+API**, with **your own permission rules applying**. Then it reports what broke.
 
-Signed and on Google Play's internal track. Before that build shipped, six simulated drivers used
-the live backend at the same time and found five bugs a single person tapping through had missed.
-All fixed; the same run now completes clean. The tool that did it is the second product below.
+### It has done this to a real, finished app
 
-### 🧪 [Populace](https://github.com/Shakhtar-Sankur/populace) — a simulated population for your app
+<img src="https://raw.githubusercontent.com/Shakhtar-Sankur/populace/main/docs/buzzbuzz-run-2026-08-09.svg" alt="Populace report for Buzz Buzz, 9 August 2026 — no failures across 400 API calls, 6 simulated drivers across Manila and Mumbai" width="100%">
 
-You cannot test presence, live sync, read receipts or notification fan-out while being only one
-person. Populace gives you dozens of believable people who sign up, move, post, comment and message
-each other — as real authenticated users, through your own API, with your own permission rules
-applying. Then it reports what broke.
+That is the **second** run. On the first, six simulated drivers found **five bugs in three and a
+half minutes** in an app that was finished, signed, and had just passed a full manual test of every
+screen.
 
-Built to test Buzz Buzz, and deliberately kept free of any reference to it — so Buzz Buzz became its
-first customer rather than its purpose.
+The worst one: a privacy fix had restricted writes on `profiles` to a column list, and
+`INSERT … ON CONFLICT DO UPDATE` needs `SELECT` on every column it touches — one of which was
+deliberately unreadable. **Every new signup silently created no profile row**, and every post and
+group-join after it died on a foreign key pointing at the row that was never written.
 
-**What it found on its first real run.** Pointed at Buzz Buzz's live backend on 9 August 2026 — an
-app that had already passed a full manual test of every screen — six simulated drivers across Manila
-and Mumbai found **five bugs in three and a half minutes.** One stopped account creation outright: a
-privacy change had made a column unreadable, and the signup write silently needed to read it. After
-the fixes, **no failures across 400 API calls.** Two of the five were in Populace's own reference
-adapter, and the worse one was an unchecked error — the exact fault the tool exists to catch.
+You never see that alone, because your own account already exists. Populace creates six brand-new
+accounts every run and hit it in the first fifteen seconds.
 
-Six users for three minutes is a correctness run, not a load test. Saying which one it was is the
-point.
+> **You cannot upsert a column you cannot select.** Three of the five bugs were that one mistake
+> wearing different clothes.
+
+Two of the five were in Populace's own reference adapter, and the worse of those was an **unchecked
+error** — the exact fault this tool exists to catch, sitting in our own code. It made the report
+blame a later call for a failure that happened during signup. Fixing one line turned three
+confusing symptoms into one sentence naming the cause.
+
+*Six users for three minutes is a correctness run, not a load test. It has been pointed at one real
+backend so far and that backend was ours — the next should be someone else's.*
 
 `Node` `zero runtime dependencies` — 13-method adapter contract · 3 production guards · 20/20 self-tests
 
-`populace demo` runs the whole thing against a bundled fake app that has a real bug in it — no
-backend, no signup. CI fails the build if that bug ever stops being found.
+```bash
+git clone https://github.com/Shakhtar-Sankur/populace && cd populace && node src/cli.mjs demo
+```
+
+No install step — there is nothing to install, which is the zero-dependency claim proving itself.
+It runs against a bundled fake app with a real bug planted in it, finds the bug, names the policy,
+and **exits 1**. That exit code is the whole point: the run fails your build rather than telling you
+everything went fine. CI fails if the bug ever stops being found.
 
 ---
 
-### Also here
+## 🐝 [Buzz Buzz](https://github.com/Shakhtar-Sankur/buzz-buzz) — a home for gig workers
+
+A Swiggy rider, an Uber driver and an Amazon Flex courier are often the same person, but no platform
+connects those identities. Buzz Buzz is the professional and social layer across all of them.
+
+| | |
+|---|---|
+| **Earnings that follow the road** | Money accrues from distance genuinely travelled — a stationary phone earns nothing, so sitting in traffic cannot inflate the number |
+| **A map with people on it** | Live driver positions, search any city or street on earth. Sharing your position is **off** until you turn it on |
+| **The street, told by the street** | Flooding, surges, closures, queues — from the drivers who just came through them |
+| **Works underground** | Posts and messages written with no signal queue on the device and send on reconnect |
+| **16 languages at full parity** | 278 keys each, consent and legal text included, mirrored right-to-left for Arabic |
+| **27 currencies, 49 countries** | Selected automatically from where the driver actually is |
+| **Privacy enforced by the database** | 48 row-level-security policies. Phone numbers are unreadable to other users — not hidden in the UI, **unreadable**, and a migration assertion fails if that ever stops being true |
+
+`React` `TypeScript` `Capacitor` `Supabase` — 13,235 lines · 17 tables · 48 RLS policies · 7.0 MB
+
+Signed and live on Google Play's internal track. **Free for workers, permanently** — funded by
+enterprise supply, fleet APIs and workforce analytics, the shape that funded LinkedIn and Waze.
+
+---
+
+## Also here
 
 Machine learning work from before the company: a compression pipeline for edge inference, a model
 serving platform, serverless security analytics on AWS, and predictive maintenance on GCP.
 
-Each README states its design target, what the code actually measures against it, and where it
-falls short. The compression pipeline aimed for 8× smaller and measures **−6.3%** — the export got
-bigger. That number is in the repo, along with why.
-
-### The principle both products are built on
-
-> A system that reports success it has not earned is worse than no system at all.
-
-It is why a freshly scaffolded Populace adapter honestly reports **2/13 coverage and refuses to
-run**, instead of reporting 13/13 and passing while testing nothing.
+Each README states its design target, what the code actually measures against it, and where it falls
+short. The compression pipeline aimed for 8× smaller and measures **−6.3%** — the export got
+*bigger*. That number is in the repo, along with why.
 
 ---
 
-📍 Bhubaneswar, India · 📧 sankur.kundu.tw@gmail.com · 🔗 [LinkedIn](https://linkedin.com/in/sankur-kundu)
+## The principle both products are built on
+
+> **A system that reports success it has not earned is worse than no system at all.**
+
+It is why a freshly scaffolded Populace adapter honestly reports **2/13 coverage and refuses to
+run**, instead of reporting 13/13 and passing while testing nothing. It is why the −6.3% is
+published. It is why the line under the report above says *correctness run, not a load test.*
+
+---
+
+📍 Bhubaneswar, India · working globally · 📧 sankur.kundu.tw@gmail.com · 🔗 [LinkedIn](https://linkedin.com/in/sankur-kundu)
