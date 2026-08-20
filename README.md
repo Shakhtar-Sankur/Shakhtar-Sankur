@@ -23,11 +23,11 @@ API**, with **your own permission rules applying**. Then it reports what broke.
 
 ### It has done this to a real, finished app
 
-<img src="https://raw.githubusercontent.com/Shakhtar-Sankur/populace/main/docs/buzzbuzz-run-2026-08-09.svg" alt="Populace report for Buzz Buzz, 9 August 2026 — no failures across 400 API calls, 6 simulated drivers across Manila and Mumbai" width="100%">
+<img src="https://raw.githubusercontent.com/Shakhtar-Sankur/populace/main/docs/buzz-run-2026-08-15.svg" alt="Populace report for Buzz, 15 August 2026 — no failures across 6,539 API calls, 30 simulated drivers across Manila and Mumbai" width="100%">
 
-That is the **second** run. On the first, six simulated drivers found **five bugs in three and a
-half minutes** in an app that was finished, signed, and had just passed a full manual test of every
-screen.
+That is the largest run that was clean end to end. On the **first** run, six simulated drivers found
+**five bugs in three and a half minutes** in an app that was finished, signed, and had just passed a
+full manual test of every screen. It has found **eight** across both products since.
 
 The worst one: a privacy fix had restricted writes on `profiles` to a column list, and
 `INSERT … ON CONFLICT DO UPDATE` needs `SELECT` on every column it touches — one of which was
@@ -45,26 +45,28 @@ error** — the exact fault this tool exists to catch, sitting in our own code. 
 blame a later call for a failure that happened during signup. Fixing one line turned three
 confusing symptoms into one sentence naming the cause.
 
-*Six users for three minutes is a correctness run, not a load test. It has been pointed at one real
-backend so far and that backend was ours — the next should be someone else's.*
+*Thirty concurrent users is the highest figure tested, not a measured maximum — the runs stopped at a
+signup quota, never because the app slowed down. Populace now drives two unrelated backends, but both
+of them are still ours; the next should be someone else's.*
 
-`Node` `zero runtime dependencies` — 13-method adapter contract · 3 production guards · 20/20 self-tests
+`Node` `zero runtime dependencies` — 13-method adapter contract · 3 production guards · 78 self-tests · CI on Node 18 and 22
 
 ```bash
-git clone https://github.com/Shakhtar-Sankur/populace && cd populace && node src/cli.mjs demo
+npx @gigzen/populace demo
 ```
 
-No install step — there is nothing to install, which is the zero-dependency claim proving itself.
+Published on npm as **@gigzen/populace**. No install step and nothing to install, which is the
+zero-dependency claim proving itself.
 It runs against a bundled fake app with a real bug planted in it, finds the bug, names the policy,
 and **exits 1**. That exit code is the whole point: the run fails your build rather than telling you
 everything went fine. CI fails if the bug ever stops being found.
 
 ---
 
-## 🐝 [Buzz Buzz](https://github.com/Shakhtar-Sankur/buzz-buzz) — a home for gig workers
+## 🐝 [Buzz](https://github.com/Shakhtar-Sankur/buzz-buzz) — a home for gig workers
 
 A Swiggy rider, an Uber driver and an Amazon Flex courier are often the same person, but no platform
-connects those identities. Buzz Buzz is the professional and social layer across all of them.
+connects those identities. Buzz is the professional and social layer across all of them.
 
 | | |
 |---|---|
@@ -76,7 +78,7 @@ connects those identities. Buzz Buzz is the professional and social layer across
 | **27 currencies, 49 countries** | Selected automatically from where the driver actually is |
 | **Privacy enforced by the database** | 48 row-level-security policies. Phone numbers are unreadable to other users — not hidden in the UI, **unreadable**, and a migration assertion fails if that ever stops being true |
 
-`React` `TypeScript` `Capacitor` `Supabase` — 13,235 lines · 17 tables · 48 RLS policies · 7.0 MB
+`React` `TypeScript` `Capacitor` `Supabase` — 13,235 lines · 17 tables · 48 RLS policies · 7.9 MB
 
 Signed and live on Google Play's internal track. **Free for workers, permanently** — funded by
 enterprise supply, fleet APIs and workforce analytics, the shape that funded LinkedIn and Waze.
