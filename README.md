@@ -23,11 +23,12 @@ API**, with **your own permission rules applying**. Then it reports what broke.
 
 ### It has done this to a real, finished app
 
-<img src="https://raw.githubusercontent.com/Shakhtar-Sankur/populace/main/docs/buzz-run-2026-08-15.svg" alt="Populace report for Buzz, 15 August 2026 — no failures across 6,539 API calls, 30 simulated drivers across Manila and Mumbai" width="100%">
+<img src="https://raw.githubusercontent.com/Shakhtar-Sankur/populace/main/docs/buzz-run-2026-08-21.svg" alt="Populace report for Buzz, 21 August 2026 — no failures across 932,455 API calls, 200 simulated drivers across 20 cities in 11 countries" width="100%">
 
 That is the largest run that was clean end to end. On the **first** run, six simulated drivers found
 **five bugs in three and a half minutes** in an app that was finished, signed, and had just passed a
-full manual test of every screen. It has found **eight** across both products since.
+full manual test of every screen. It has found **nine** across both products since — the most recent
+inside Populace itself.
 
 The worst one: a privacy fix had restricted writes on `profiles` to a column list, and
 `INSERT … ON CONFLICT DO UPDATE` needs `SELECT` on every column it touches — one of which was
@@ -45,9 +46,14 @@ error** — the exact fault this tool exists to catch, sitting in our own code. 
 blame a later call for a failure that happened during signup. Fixing one line turned three
 confusing symptoms into one sentence naming the cause.
 
-*Thirty concurrent users is the highest figure tested, not a measured maximum — the runs stopped at a
-signup quota, never because the app slowed down. Populace now drives two unrelated backends, but both
-of them are still ours; the next should be someone else's.*
+A later run drove **300 drivers through 1,401,435 calls with zero API failures**, but one call never
+reached the server — a socket exhausted on the test machine — so Populace marked it *inconclusive*
+rather than clean. A verdict that is never withheld is worth nothing when it is given.
+
+*These are loopback latencies and contain no network; the same calls cost about 175 ms against a
+hosted project. Three hundred drivers is where throughput stops scaling, not where the app breaks —
+that is still unfound. Populace drives two unrelated backends, but both are still ours; the next
+should be someone else's.*
 
 `Node` `zero runtime dependencies` — 13-method adapter contract · 3 production guards · 78 self-tests · CI on Node 18 and 22
 
