@@ -27,7 +27,7 @@ API**, with **your own permission rules applying**. Then it reports what broke.
 
 That is the largest run that was clean end to end. On the **first** run, six simulated drivers found
 **five bugs in three and a half minutes** in an app that was finished, signed, and had just passed a
-full manual test of every screen. It has found **nine** across both products since — the most recent
+full manual test of every screen. It has found **fourteen** across three codebases since — the most recent
 inside Populace itself.
 
 The worst one: a privacy fix had restricted writes on `profiles` to a column list, and
@@ -50,12 +50,26 @@ A later run drove **300 drivers through 1,401,435 calls with zero API failures**
 reached the server — a socket exhausted on the test machine — so Populace marked it *inconclusive*
 rather than clean. A verdict that is never withheld is worth nothing when it is given.
 
+### And to software we did not write
+
+Pointed at a local **Gitea** instance — a git forge, not a social app — it ran **1,106 API calls with
+zero failures**, created ten accounts through Gitea's own signup, drove them under Gitea's own
+permissions, and removed all ten. Five of the thirteen methods have no equivalent in a git forge, so
+they are absent from the adapter rather than stubbed, and the report names each one and what it would
+have covered.
+
+**Going in, it found five defects — all of them in Populace.** Gitea's OpenAPI description carries 482
+operations against the 18 in the fixture the adapter generator was built on, and at that scale it
+mismatched four methods whose correct endpoint was right there in the spec. The best one: `"dm"`
+matched inside `"admin"`, so *start a conversation* pointed at `POST /admin/cron/{task}`.
+
+That is the tool doing its job in the least flattering direction available.
+
 *These are loopback latencies and contain no network; the same calls cost about 175 ms against a
 hosted project. Three hundred drivers is where throughput stops scaling, not where the app breaks —
-that is still unfound. Populace drives two unrelated backends, but both are still ours; the next
-should be someone else's.*
+that is still unfound.*
 
-`Node` `zero runtime dependencies` — 13-method adapter contract · 3 production guards · 78 self-tests · CI on Node 18 and 22
+`Node` `zero runtime dependencies` — 13-method adapter contract · 3 production guards · 93 self-tests · CI on Node 18 and 22
 
 ```bash
 npx @gigzen/populace demo
