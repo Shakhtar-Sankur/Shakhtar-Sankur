@@ -69,14 +69,21 @@ That is the tool doing its job in the least flattering direction available.
 hosted project. Three hundred drivers is where throughput stops scaling, not where the app breaks —
 that is still unfound.*
 
-`Node` `zero runtime dependencies` — 13-method adapter contract · 3 production guards · 93 self-tests · CI on Node 18 and 22
+`Node` `zero runtime dependencies` — 13-method adapter contract · 3 production guards · 97 self-tests · CI on Node 18 and 22
 
 ```bash
 npx @gigzen/populace demo
 ```
 
-Published on npm as **@gigzen/populace**. No install step and nothing to install, which is the
-zero-dependency claim proving itself.
+Published on npm as **@gigzen/populace** 1.0.0. No install step and nothing to install, which is
+the zero-dependency claim proving itself.
+
+**Or don't use a terminal at all.** [Populace Studio](https://github.com/Shakhtar-Sankur/populace/releases/latest)
+is the same engine in a window — a Windows application that needs nothing else on the machine,
+no Node and no npm. It shows every simulated person on a world map as they move, a box per contract
+method with its live latency, and, when something breaks, the failing method and the database's own
+error text while the run is still going. It never reimplements the engine: every run is the same
+command a terminal would issue, and the window prints the command it ran.
 It runs against a bundled fake app with a real bug planted in it, finds the bug, names the policy,
 and **exits 1**. That exit code is the whole point: the run fails your build rather than telling you
 everything went fine. CI fails if the bug ever stops being found.
