@@ -69,13 +69,13 @@ That is the tool doing its job in the least flattering direction available.
 hosted project. Three hundred drivers is where throughput stops scaling, not where the app breaks —
 that is still unfound.*
 
-`Node` `zero runtime dependencies` — 13-method adapter contract · 3 production guards · 97 self-tests · CI on Node 18 and 22
+`Node` `zero runtime dependencies` — 13-method adapter contract · 3 production guards · 101 self-tests · CI on Node 18 and 22
 
 ```bash
 npx @gigzen/populace demo
 ```
 
-Published on npm as **@gigzen/populace** 1.0.0. No install step and nothing to install, which is
+Published on npm as **@gigzen/populace** 1.2.0. No install step and nothing to install, which is
 the zero-dependency claim proving itself.
 
 **Or don't use a terminal at all.** [Populace Studio](https://github.com/Shakhtar-Sankur/populace/releases/latest)
@@ -98,10 +98,10 @@ connects those identities. Buzz is the professional and social layer across all 
 | | |
 |---|---|
 | **Earnings that follow the road** | Money accrues from distance genuinely travelled — a stationary phone earns nothing, so sitting in traffic cannot inflate the number |
-| **A map with people on it** | Live driver positions, search any city or street on earth. Sharing your position is **off** until you turn it on |
+| **A map with two modes** | *Me* draws the roads you actually drove, any day you pick, matched onto the street network rather than joining GPS fixes with straight lines. *Friends* shows where your connections are now. Sharing your position is **off** until you turn it on |
 | **The street, told by the street** | Flooding, surges, closures, queues — from the drivers who just came through them |
 | **Works underground** | Posts and messages written with no signal queue on the device and send on reconnect |
-| **16 languages at full parity** | 278 keys each, consent and legal text included, mirrored right-to-left for Arabic |
+| **16 languages at full parity** | 316 keys each, consent and legal text included, mirrored right-to-left for Arabic |
 | **27 currencies, 49 countries** | Selected automatically from where the driver actually is |
 | **Privacy enforced by the database** | 48 row-level-security policies. Phone numbers are unreadable to other users — not hidden in the UI, **unreadable**, and a migration assertion fails if that ever stops being true |
 
