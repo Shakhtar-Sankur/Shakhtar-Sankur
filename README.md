@@ -1,11 +1,11 @@
 # Sankur Kundu
 
-**Co-founder & Director, Technology at Gigzen.** I build systems that measure themselves.
+**Co-founder & Head of Engineering at Gigzen.** I build systems that measure themselves.
 
-Two products, both written solo, from Postgres policies to the signed release build. One is a
-gig-worker platform shipping in 16 languages across 49 countries. The other is the testing tool I
-had to build to prove the first one worked — and it found five bugs in it that a full manual test
-had missed.
+Two products, both written solo, from Postgres policies to the signed release build. One is
+**Waggle**, a gig-worker app in 43 languages across 92 countries. The other is **Populace**, the
+testing tool I had to build to prove the first one worked. Its first run found five defects in three
+and a half minutes, after a full manual test had passed.
 
 🌐 [gigzen](https://shakhtar-sankur.github.io/gigzen/) · 🧑‍💻 [portfolio](https://shakhtar-sankur.github.io) · 📧 sankur.kundu.tw@gmail.com
 
@@ -21,14 +21,17 @@ Populace gives you a few dozen believable people who sign up, move through a rea
 comment, message each other and join groups — as **real authenticated users**, through **your own
 API**, with **your own permission rules applying**. Then it reports what broke.
 
-### It has done this to a real, finished app
+🌐 [Site](https://shakhtar-sankur.github.io/populace/) · 📦 [npm](https://www.npmjs.com/package/@gigzen/populace) · 🪟 [Studio for Windows](https://github.com/Shakhtar-Sankur/populace/releases/latest)
 
-<img src="https://raw.githubusercontent.com/Shakhtar-Sankur/populace/main/docs/buzz-run-2026-08-21.svg" alt="Populace report for Buzz, 21 August 2026 — no failures across 932,455 API calls, 200 simulated drivers across 20 cities in 11 countries" width="100%">
+### What it found in a real app
 
-That is the largest run that was clean end to end. On the **first** run, six simulated drivers found
-**five bugs in three and a half minutes** in an app that was finished, signed, and had just passed a
-full manual test of every screen. It has found **fourteen** across three codebases since — the most recent
-inside Populace itself.
+<img src="https://raw.githubusercontent.com/Shakhtar-Sankur/populace/main/docs/buzz-run-2026-08-21.svg" alt="Populace report for Buzz (now Waggle), 21 August 2026 — no failures across 932,455 API calls, 200 simulated drivers across 20 cities in 11 countries" width="100%">
+
+That is the largest run that was clean end to end. The app was called Buzz then and is Waggle now.
+
+The **first** run was in August, before the app launched. Six simulated drivers found **five defects
+in three and a half minutes**, after the app had been signed and had passed a full manual test of
+every screen. Three were in the app. A fourth app defect turned up in a later run.
 
 The worst one: a privacy fix had restricted writes on `profiles` to a column list, and
 `INSERT … ON CONFLICT DO UPDATE` needs `SELECT` on every column it touches — one of which was
@@ -38,17 +41,19 @@ group-join after it died on a foreign key pointing at the row that was never wri
 You never see that alone, because your own account already exists. Populace creates six brand-new
 accounts every run and hit it in the first fifteen seconds.
 
-> **You cannot upsert a column you cannot select.** Three of the five bugs were that one mistake
+> **You cannot upsert a column you cannot select.** Three of the five defects were that one mistake
 > wearing different clothes.
 
-Two of the five were in Populace's own reference adapter, and the worse of those was an **unchecked
-error** — the exact fault this tool exists to catch, sitting in our own code. It made the report
-blame a later call for a failure that happened during signup. Fixing one line turned three
-confusing symptoms into one sentence naming the cause.
+The other two were in Populace's own reference adapter. The worse of those was an **unchecked
+error**, the exact fault this tool exists to catch, sitting in our own code. It made the report blame
+a later call for a failure that happened during signup. Fixing one line turned three confusing
+symptoms into one sentence naming the cause.
 
-A later run drove **300 drivers through 1,401,435 calls with zero API failures**, but one call never
-reached the server — a socket exhausted on the test machine — so Populace marked it *inconclusive*
-rather than clean. A verdict that is never withheld is worth nothing when it is given.
+Local runs have since made **3.17 million API calls in one day with zero API failures**. One run of
+300 drivers still came back *inconclusive* rather than clean, because a single call never reached the
+server: a socket was exhausted on the test machine. A verdict that is never withheld is worth nothing
+when it is given. Against a hosted project, the largest run put **36 riders through 7,485 calls with
+no failures**.
 
 ### And to software we did not write
 
@@ -65,35 +70,38 @@ matched inside `"admin"`, so *start a conversation* pointed at `POST /admin/cron
 
 That is the tool doing its job in the least flattering direction available.
 
-*These are loopback latencies and contain no network; the same calls cost about 175 ms against a
-hosted project. Three hundred drivers is where throughput stops scaling, not where the app breaks —
+*Local runs are loopback latencies and contain no network; the same calls cost about 175 ms against
+a hosted project. Three hundred drivers is where throughput stops scaling, not where the app breaks —
 that is still unfound.*
 
-`Node` `zero runtime dependencies` — 13-method adapter contract · 3 production guards · 101 self-tests · CI on Node 18 and 22
+`Node` `zero runtime dependencies` — 13-method adapter contract · 3 production guards · 121 self-tests · CI on Node 18 and 22
 
 ```bash
 npx @gigzen/populace demo
 ```
 
-Published on npm as **@gigzen/populace** 1.2.0. No install step and nothing to install, which is
-the zero-dependency claim proving itself.
+Published on npm as **@gigzen/populace** 1.3.3. There is nothing to install first, which is the
+zero-dependency claim proving itself. The demo runs against a bundled fake app with a real bug
+planted in it. It finds the bug, names the policy, and **exits 1**. That exit code is the point: the
+run fails your build instead of telling you everything went fine. CI fails if the bug ever stops
+being found.
 
-**Or don't use a terminal at all.** [Populace Studio](https://github.com/Shakhtar-Sankur/populace/releases/latest)
-is the same engine in a window — a Windows application that needs nothing else on the machine,
-no Node and no npm. It shows every simulated person on a world map as they move, a box per contract
-method with its live latency, and, when something breaks, the failing method and the database's own
-error text while the run is still going. It never reimplements the engine: every run is the same
-command a terminal would issue, and the window prints the command it ran.
-It runs against a bundled fake app with a real bug planted in it, finds the bug, names the policy,
-and **exits 1**. That exit code is the whole point: the run fails your build rather than telling you
-everything went fine. CI fails if the bug ever stops being found.
+**Or skip the terminal.** [Populace Studio 1.0.15](https://github.com/Shakhtar-Sankur/populace/releases/latest)
+is the same engine in a Windows app. It needs no Node and no npm. It shows every simulated person on a
+world map as they move, and a box per contract method with its live latency. A method the run never
+called is drawn dashed and named, never counted as covered. When something breaks, it shows the
+failing method and the database's own error text while the run is still going. It never
+reimplements the engine: every run is the same command a terminal would issue, and the window prints
+the command it ran.
 
 ---
 
-## 🐝 [Buzz](https://github.com/Shakhtar-Sankur/buzz-buzz) — a home for gig workers
+## 🐝 [Waggle](https://github.com/Shakhtar-Sankur/waggle) — a home for gig workers
 
 A Swiggy rider, an Uber driver and an Amazon Flex courier are often the same person, but no platform
-connects those identities. Buzz is the professional and social layer across all of them.
+connects those identities. Waggle is the professional and social layer across all of them.
+
+🌐 [Site](https://shakhtar-sankur.github.io/gigzen/waggle.html) · 📱 [Download the APK](https://shakhtar-sankur.github.io/gigzen/Waggle-1.4.apk)
 
 | | |
 |---|---|
@@ -101,14 +109,15 @@ connects those identities. Buzz is the professional and social layer across all 
 | **A map with two modes** | *Me* draws the roads you actually drove, any day you pick, matched onto the street network rather than joining GPS fixes with straight lines. *Friends* shows where your connections are now. Sharing your position is **off** until you turn it on |
 | **The street, told by the street** | Flooding, surges, closures, queues — from the drivers who just came through them |
 | **Works underground** | Posts and messages written with no signal queue on the device and send on reconnect |
-| **16 languages at full parity** | 316 keys each, consent and legal text included, mirrored right-to-left for Arabic |
-| **27 currencies, 49 countries** | Selected automatically from where the driver actually is |
-| **Privacy enforced by the database** | 48 row-level-security policies. Phone numbers are unreadable to other users — not hidden in the UI, **unreadable**, and a migration assertion fails if that ever stops being true |
+| **43 languages** | Consent and legal text included, mirrored right-to-left for Arabic, Urdu and Hebrew |
+| **70 currencies, 92 countries, 33 gig platforms** | Selected automatically from where the rider actually is |
+| **Privacy enforced by the database** | Row-level security on every table. Phone numbers are unreadable to other users — not hidden in the UI, **unreadable** |
 
-`React` `TypeScript` `Capacitor` `Supabase` — 13,235 lines · 17 tables · 48 RLS policies · 7.9 MB
+`React` `TypeScript` `Capacitor` `Supabase` — Android 7.0+ · 8.2 MB
 
-Signed and live on Google Play's internal track. **Free for workers, permanently** — funded by
-enterprise supply, fleet APIs and workforce analytics, the shape that funded LinkedIn and Waze.
+Version 1.4, signed, in closed testing. It is not on Google Play yet, so the APK installs from the
+site. **Free for workers, permanently** — funded by enterprise supply, fleet APIs and workforce
+analytics, the shape that funded LinkedIn and Waze.
 
 ---
 
@@ -128,8 +137,9 @@ short. The compression pipeline aimed for 8× smaller and measures **−6.3%** �
 > **A system that reports success it has not earned is worse than no system at all.**
 
 It is why a freshly scaffolded Populace adapter honestly reports **2/13 coverage and refuses to
-run**, instead of reporting 13/13 and passing while testing nothing. It is why the −6.3% is
-published. It is why the line under the report above says *correctness run, not a load test.*
+run**, instead of reporting 13/13 and passing while testing nothing. It is why coverage counts only
+the methods a run actually called. It is why the −6.3% is published. It is why the line under the
+report above says *correctness run, not a load test.*
 
 ---
 
