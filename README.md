@@ -101,7 +101,7 @@ the command it ran.
 A Swiggy rider, an Uber driver and an Amazon Flex courier are often the same person, but no platform
 connects those identities. Waggle is the professional and social layer across all of them.
 
-🌐 [Site](https://shakhtar-sankur.github.io/gigzen/waggle.html) · 📱 [Download the APK](https://shakhtar-sankur.github.io/gigzen/Waggle-1.4.apk)
+🌐 [Site](https://shakhtar-sankur.github.io/gigzen/waggle.html) · 📱 [Download the APK](https://shakhtar-sankur.github.io/gigzen/Waggle-1.4.1.apk)
 
 | | |
 |---|---|
@@ -115,7 +115,7 @@ connects those identities. Waggle is the professional and social layer across al
 
 `React` `TypeScript` `Capacitor` `Supabase` — Android 7.0+ · 8.2 MB
 
-Version 1.4, signed, in closed testing. It is not on Google Play yet, so the APK installs from the
+Version 1.4.1, signed, in closed testing. It is not on Google Play yet, so the APK installs from the
 site. **Free for workers, permanently** — funded by enterprise supply, fleet APIs and workforce
 analytics, the shape that funded LinkedIn and Waze.
 
