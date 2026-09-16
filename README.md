@@ -123,8 +123,16 @@ analytics, the shape that funded LinkedIn and Waze.
 
 ## Also here
 
-Machine learning work from before the company: a compression pipeline for edge inference, a model
-serving platform, serverless security analytics on AWS, and predictive maintenance on GCP.
+Machine learning and signal work from before the company, all of it public:
+
+- [Edge model compression](https://github.com/Shakhtar-Sankur/AI-Model-Compression-for-TSMC-3nm-Chips-Disaster-Classification) — distillation, pruning and int8 quantization to ONNX
+- [ML serving platform](https://github.com/Shakhtar-Sankur/ML-Model-Serving-Platform) — versioned rollout, A/B routing, circuit breaking, drift detection
+- [Detek](https://github.com/Shakhtar-Sankur/Detek) — data-leak detection on AWS: a BERT content classifier paired with an LSTM behavioural model
+- [Predictive maintenance on GCP](https://github.com/Shakhtar-Sankur/Predictive-Maintenance-for-IoT-GCP-Deployed-Real-Time-Optimized) — LSTM failure prediction on a 48-hour horizon
+- [Synthetic data with diffusion](https://github.com/Shakhtar-Sankur/Generative-AI-for-Synthetic-Data-Generation) — a DDPM for conditions whose real datasets are tiny and unshareable
+- [Multi-modal code intelligence](https://github.com/Shakhtar-Sankur/Multi-Modal-Code-Intelligence-System) — code as tokens and as a syntax tree at once, via tree-sitter
+- [Software-defined radio](https://github.com/Shakhtar-Sankur/sdr-signal-processing) — demodulation, modulation classification and decoding, as a library with no hardware needed
+- [Reinforcement learning on CartPole](https://github.com/Shakhtar-Sankur/Reinforcement-Learning-for-CartPole-AI) — a DQN written out in full, to be read rather than to win
 
 Each README states its design target, what the code actually measures against it, and where it falls
 short. The compression pipeline aimed for 8× smaller and measures **−6.3%** — the export got
