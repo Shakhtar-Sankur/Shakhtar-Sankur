@@ -80,13 +80,13 @@ that is still unfound.*
 npx @gigzen/populace demo
 ```
 
-Published on npm as **@gigzen/populace** 1.3.3. There is nothing to install first, which is the
+Published on npm as **@gigzen/populace** 1.3.4. There is nothing to install first, which is the
 zero-dependency claim proving itself. The demo runs against a bundled fake app with a real bug
 planted in it. It finds the bug, names the policy, and **exits 1**. That exit code is the point: the
 run fails your build instead of telling you everything went fine. CI fails if the bug ever stops
 being found.
 
-**Or skip the terminal.** [Populace Studio 1.0.15](https://github.com/Shakhtar-Sankur/populace/releases/latest)
+**Or skip the terminal.** [Populace Studio 1.0.16](https://github.com/Shakhtar-Sankur/populace/releases/latest)
 is the same engine in a Windows app. It needs no Node and no npm. It shows every simulated person on a
 world map as they move, and a box per contract method with its live latency. A method the run never
 called is drawn dashed and named, never counted as covered. When something breaks, it shows the
@@ -135,8 +135,9 @@ Machine learning and signal work from before the company, all of it public:
 - [Reinforcement learning on CartPole](https://github.com/Shakhtar-Sankur/Reinforcement-Learning-for-CartPole-AI) — a DQN written out in full, to be read rather than to win
 
 Each README states its design target, what the code actually measures against it, and where it falls
-short. The compression pipeline aimed for 8× smaller and measures **−6.3%** — the export got
-*bigger*. That number is in the repo, along with why.
+short. Each also has a test suite that CI runs on every push to main. The compression pipeline aimed
+for 8× smaller and measures **−6.3%** — the export got *bigger*. That number is in the repo, along
+with why.
 
 ---
 
