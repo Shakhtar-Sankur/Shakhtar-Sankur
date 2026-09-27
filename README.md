@@ -3,9 +3,9 @@
 **Co-founder & Head of Engineering at Gigzen.** I build systems that measure themselves.
 
 Two products, both written solo, from Postgres policies to the signed release build. One is
-**Waggle**, a gig-worker app in 43 languages across 92 countries. The other is **Populace**, the
-testing tool I had to build to prove the first one worked. Its first run found five defects in three
-and a half minutes, after a full manual test had passed.
+**Waggle**, local delivery as three Android apps (for riders, shops and customers) on one Postgres
+backend. The other is **Populace**, the testing tool I had to build to prove Waggle worked. Its first
+run found five defects in three and a half minutes, after a full manual test had passed.
 
 🌐 [gigzen](https://shakhtar-sankur.github.io/gigzen/) · 🧑‍💻 [portfolio](https://shakhtar-sankur.github.io) · 📧 sankur.kundu.tw@gmail.com
 
@@ -96,28 +96,29 @@ the command it ran.
 
 ---
 
-## 🐝 [Waggle](https://github.com/Shakhtar-Sankur/waggle) — a home for gig workers
+## 🐝 [Waggle](https://shakhtar-sankur.github.io/gigzen/waggle.html) — local delivery, three apps on one backend
 
-A Swiggy rider, an Uber driver and an Amazon Flex courier are often the same person, but no platform
-connects those identities. Waggle is the professional and social layer across all of them.
+One TypeScript codebase builds three Android apps on a shared Supabase Postgres backend, with
+row-level security on every table.
 
-🌐 [Site](https://shakhtar-sankur.github.io/gigzen/waggle.html) · 📱 [Download the APK](https://shakhtar-sankur.github.io/gigzen/Waggle-1.4.3.apk)
+| App | For | |
+|---|---|---|
+| **Waggle Gig** 1.6.2 | Riders | Offers nearby with the fare up front, spoken directions to the shop and the door, and earnings by the hour. The whole fare is the rider's |
+| **Waggle Business** 1.2.0 | Shops | Each order becomes a delivery in one tap, with a 4-digit handover code, a live map of the rider, and GST invoices and payments in one place |
+| **Waggle** 1.1.0 | Customers | Order from nearby shops, alone or as a group, now or later, and follow the rider to the door. **Waggle Send** carries parcels across town, up to 10 kg |
 
-| | |
-|---|---|
-| **Earnings that follow the road** | Money accrues from distance genuinely travelled — a stationary phone earns nothing, so sitting in traffic cannot inflate the number |
-| **A map with two modes** | *Me* draws the roads you actually drove, any day you pick, matched onto the street network rather than joining GPS fixes with straight lines. *Friends* shows where your connections are now. Sharing your position is **off** until you turn it on |
-| **The street, told by the street** | Flooding, surges, closures, queues — from the drivers who just came through them |
-| **Works underground** | Posts and messages written with no signal queue on the device and send on reconnect |
-| **43 languages** | Consent and legal text included, mirrored right-to-left for Arabic, Urdu and Hebrew |
-| **70 currencies, 92 countries, 33 gig platforms** | Selected automatically from where the rider actually is |
-| **Privacy enforced by the database** | Row-level security on every table. Phone numbers are unreadable to other users — not hidden in the UI, **unreadable** |
+Checked as one product: **150 attacks on the database rules, all blocked**, and 42 steps clicked
+through all three apps live, from a new rider's verification to the rating at the end of a delivery.
 
-`React` `TypeScript` `Capacitor` `Supabase` — Android 7.0+ · 8.2 MB
+`React` `TypeScript` `Capacitor` `Supabase` — Android 7.0+
 
-Version 1.4.3, signed, in closed testing. It is not on Google Play yet, so the APK installs from the
-site. **Free for workers, permanently** — funded by enterprise supply, fleet APIs and workforce
-analytics, the shape that funded LinkedIn and Waze.
+All three are signed and in closed testing. They are not on Google Play yet, so the APKs install
+from the [site](https://shakhtar-sankur.github.io/gigzen/waggle.html).
+
+**Where it started.** [Waggle 1.4](https://github.com/Shakhtar-Sankur/waggle) is the open-source
+rider app that Waggle Gig replaced: a professional and social layer for gig workers in 43 languages
+across 92 countries, with posts that queue offline and phone numbers unreadable to other users at
+the database level. It is the app Populace was first pointed at.
 
 ---
 
