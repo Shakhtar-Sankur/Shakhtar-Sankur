@@ -1,6 +1,6 @@
 # Sankur Kundu
 
-**Co-founder & Head of Engineering at Gigzen.** I build systems that measure themselves.
+**Co-founder & Founding Engineer at Gigzen.** I build systems that measure themselves.
 
 Two products, both written solo, from Postgres policies to the signed release build. One is
 **Waggle**, local delivery as three Android apps (for riders, shops and customers) on one Postgres
