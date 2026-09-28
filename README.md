@@ -74,7 +74,7 @@ That is the tool doing its job in the least flattering direction available.
 a hosted project. Three hundred drivers is where throughput stops scaling, not where the app breaks —
 that is still unfound.*
 
-`Node` `zero runtime dependencies` — 13-method adapter contract · 3 production guards · 121 self-tests · CI on Node 18 and 22
+`Node` `zero runtime dependencies` — 13-method adapter contract · 3 production guards · 122 self-tests · CI on Node 18 and 22
 
 ```bash
 npx @gigzen/populace demo
