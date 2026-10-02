@@ -7,7 +7,24 @@ Two products, both written solo, from Postgres policies to the signed release bu
 backend. The other is **Populace**, the testing tool I had to build to prove Waggle worked. Its first
 run found five defects in three and a half minutes, after a full manual test had passed.
 
+Alongside them, five systems written from scratch in Rust, each with no dependencies, and each
+with the scripts and raw results behind its numbers in the repo.
+
 🌐 [gigzen](https://shakhtar-sankur.github.io/gigzen/) · 🧑‍💻 [portfolio](https://shakhtar-sankur.github.io) · 📧 sankur.kundu.tw@gmail.com
+
+---
+
+## ⚙️ Systems, from scratch in Rust
+
+| | What it is | What it measures |
+|---|---|---|
+| **[tessel](https://github.com/Shakhtar-Sankur/tessel)** | A Triton-style tile language and its compiler: one kernel, compiled to **CUDA** (tensor cores), **Metal** (Apple GPUs) and **Pallas** (TPUs) | On an NVIDIA T4, GEMM at **parity with cuBLAS** (1.00–1.04×) and attention **1.3–1.9× faster than PyTorch SDPA**. An LLM engine built only on its kernels runs TinyLlama-1.1B with output **identical to vLLM's**, token for token, at **1.05× vLLM's throughput** with 32 requests at once |
+| **[kiln](https://github.com/Shakhtar-Sankur/kiln)** | An ML compiler: ONNX through operator fusion and a loop IR to SIMD and CUDA code, auto-tuned | BERT on 4 CPU cores in **117 ms**, against 149 for torch.compile, 153 for ONNX Runtime and 189 for JAX/XLA; on a T4, SmolLM2 **1.65× faster than torch.compile** |
+| **[ferrolm](https://github.com/Shakhtar-Sankur/ferrolm)** | An LLM inference server and RAG stack: paged KV cache, continuous batching, prefix caching, speculative decoding | Output matches Hugging Face transformers; **3.4× the throughput** of one-at-a-time serving, first token **46× sooner** with prefix caching; retrieval lifts a 1.7B model's SQuAD F1 from **15 to 48** |
+| **[quorumdb](https://github.com/Shakhtar-Sankur/quorumdb)** | A distributed SQL database that psql connects to: LSM storage, Raft, serializable transactions (Percolator) | **10,000 simulated clusters** and **610K crashes**, every history machine-checked; a **TLA+** model of the transaction protocol; **6 real bugs** found before it passed |
+| **[faultline](https://github.com/Shakhtar-Sankur/faultline)** | Jepsen-style fault injection for **etcd**: network partitions, crashes and pauses, with linearizability and watch checkers | **1.26M operations** under **288 faults** across 4 etcd release lines; traced lost updates under etcd locks to a paused leader applying a timed-out write **6 s late** |
+
+`Rust` `CUDA` `Metal` `Pallas` `TLA+` — no speed is reported for output that has not first been checked against a reference: fp64, PyTorch, Hugging Face or vLLM.
 
 ---
 
