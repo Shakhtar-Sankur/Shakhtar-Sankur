@@ -22,8 +22,10 @@ scripts and raw results behind its numbers in the repo.
 | **[relay](https://github.com/Shakhtar-Sankur/relay)** | A disaggregated LLM inference cluster: prefill and decode workers in **C++20/CUDA** with my own **flash-attention** and **flash-decoding** kernels, a KV-cache transfer engine, and a **Swift** control plane (C++ interop, OpenAI-compatible streaming API, prefix-aware routing). Fault-tolerant | On a T4, 2,048-token prefill **8.7× faster** and 32-sequence decode **5.4× faster** than its first kernels; streaming hides **99–100%** of the KV transfer (21.6 ms → 0.08 ms); **384 of 384** requests identical to a fault-free run through **60 random worker kills** |
 | **[tandem](https://github.com/Shakhtar-Sankur/tandem)** | Distributed training with no torch.distributed or NCCL: DDP, **ZeRO-1/2/3** (FSDP-style sharding), **GPipe** and **1F1B** on its own ring all-reduce, and a **C++/CUDA** engine (CUDA IPC, a fused reduce kernel) | On 2× T4, DDP and every ZeRO stage train **bit-identically to PyTorch DDP and FSDP**; all-reduce within **2% of NCCL's bandwidth** at 64–256 MB; the README says where it still loses: **86%** of PyTorch DDP's throughput |
 
-**Open source:** two pull requests to PyTorch, both under review.
-[#199441](https://github.com/pytorch/pytorch/pull/199441) checked all 37 Inductor-skipped tests in
+**Open source:** three pull requests to PyTorch, all under review.
+[#199875](https://github.com/pytorch/pytorch/pull/199875) makes torch.compile fill `torch.empty` in
+deterministic mode as eager does, without filling Inductor's own buffers, which is what got an earlier
+fix reverted; [#199441](https://github.com/pytorch/pytorch/pull/199441) checked all 37 Inductor-skipped tests in
 `test_torch.py` on CPU and two T4 GPUs and removes 13 stale torch.compile skips;
 [#199646](https://github.com/pytorch/pytorch/pull/199646) traces 19 skipped determinism tests to a
 forward/backward mode mismatch, so 8 now run under torch.compile and 11 stay skipped with verified causes.
