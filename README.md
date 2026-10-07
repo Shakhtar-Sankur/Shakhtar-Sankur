@@ -7,18 +7,20 @@ Two products, both written solo, from Postgres policies to the signed release bu
 backend. The other is **Populace**, the testing tool I had to build to prove Waggle worked. Its first
 run found five defects in three and a half minutes, after a full manual test had passed.
 
-Alongside them, systems written from scratch: an LLM inference cluster in C++, CUDA and Swift,
-distributed training on my own collectives, and five Rust systems with no dependencies. Each has the
+Alongside them, systems written from scratch: reinforcement-learning post-training of an LLM on two
+GPUs, an LLM inference cluster in C++, CUDA and Swift, distributed training on my own collectives, and
+five Rust systems with no dependencies. Each has the
 scripts and raw results behind its numbers in the repo.
 
 🌐 [gigzen](https://shakhtar-sankur.github.io/gigzen/) · 🧑‍💻 [portfolio](https://shakhtar-sankur.github.io) · 📧 sankur.kundu.tw@gmail.com
 
 ---
 
-## 🚀 LLM serving and distributed training
+## 🚀 LLM training, serving and distributed training
 
 | | What it is | What it measures |
 |---|---|---|
+| **[ratchet](https://github.com/Shakhtar-Sankur/ratchet)** | Reinforcement-learning post-training (**GRPO**) from scratch: rollouts with per-token log-probabilities on relay, a **PyTorch** trainer data-parallel on tandem, weights synced back **in place on the GPU**, partial rollouts and one-step-ahead training | On 2× T4, 100 steps raised Qwen2.5-0.5B on **GSM8K** from **48.1% to 52.5%** (all 1,319 test problems); weight sync **369× faster** than a reload (0.017 s); found that fp16 rounding silently discarded the training updates and fixed it (engine–trainer log-prob gap **5.2 → 0.04**) |
 | **[relay](https://github.com/Shakhtar-Sankur/relay)** | A disaggregated LLM inference cluster: prefill and decode workers in **C++20/CUDA** with my own **flash-attention** and **flash-decoding** kernels, a KV-cache transfer engine, and a **Swift** control plane (C++ interop, OpenAI-compatible streaming API, prefix-aware routing). Fault-tolerant | On a T4, 2,048-token prefill **8.7× faster** and 32-sequence decode **5.4× faster** than its first kernels; streaming hides **99–100%** of the KV transfer (21.6 ms → 0.08 ms); **384 of 384** requests identical to a fault-free run through **60 random worker kills** |
 | **[tandem](https://github.com/Shakhtar-Sankur/tandem)** | Distributed training with no torch.distributed or NCCL: DDP, **ZeRO-1/2/3** (FSDP-style sharding), **GPipe** and **1F1B** on its own ring all-reduce, and a **C++/CUDA** engine (CUDA IPC, a fused reduce kernel) | On 2× T4, DDP and every ZeRO stage train **bit-identically to PyTorch DDP and FSDP**; all-reduce within **2% of NCCL's bandwidth** at 64–256 MB; the README says where it still loses: **86%** of PyTorch DDP's throughput |
 
