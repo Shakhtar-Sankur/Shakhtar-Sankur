@@ -193,4 +193,4 @@ report above says *correctness run, not a load test.*
 
 ---
 
-📍 Bhubaneswar, India · working globally · 📧 sankur.kundu.tw@gmail.com · 🔗 [LinkedIn](https://linkedin.com/in/sankur-kundu)
+📍 Kolkata, India · open to relocation · working globally · 📧 sankur.kundu.tw@gmail.com · 🔗 [LinkedIn](https://linkedin.com/in/sankur-kundu)
