@@ -55,6 +55,8 @@ forward/backward mode mismatch, so 8 now run under torch.compile and 11 stay ski
 |---|---|---|
 | **[kessler](https://github.com/Shakhtar-Sankur/kessler)** · [live globe](https://shakhtar-sankur.github.io/kessler/) | An independent, open-source **auditor of space traffic**: one **C++** SGP4 propagator compiled for CPU and **CUDA**, all-vs-all conjunction screening with a GPU spatial hash (proven against brute force), collision probability (Foster, Alfano), and a test of SpaceX's reported collision avoidance against public orbit history; it screens the whole catalogue every day on GitHub Actions and publishes a 3D globe | Every pair of the **32,593** tracked objects screened for a day in **28 s** on a T4; reproduces CelesTrak SOCRATES's 100 closest conjunctions (median **0.24 m**) and NASA CARA's probabilities to **1.6e-8**; of SpaceX's **207,152** reported avoidance maneuvers, only about **half** leave a visible trace in public data, and satellites that maneuvered had predicted sub-km approaches just **1.3–1.5×** as often as those that did not |
 
+<a href="https://shakhtar-sankur.github.io/kessler/"><img src="https://raw.githubusercontent.com/Shakhtar-Sankur/kessler/main/docs/screenshots/globe.png" width="720" alt="kessler: every tracked object in Earth orbit on 10 October 2026, and the day's closest approaches"></a>
+
 `C++20` `CUDA` `Python` `NumPy` `GitHub Actions` `three.js`
 
 ---
