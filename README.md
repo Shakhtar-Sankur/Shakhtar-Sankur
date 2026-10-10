@@ -7,7 +7,8 @@ Two products, both written solo, from Postgres policies to the signed release bu
 backend. The other is **Populace**, the testing tool I had to build to prove Waggle worked. Its first
 run found five defects in three and a half minutes, after a full manual test had passed.
 
-Alongside them, systems written from scratch: reinforcement-learning post-training of an LLM on two
+Alongside them, systems written from scratch: an independent auditor of space traffic that screens
+every tracked object in Earth orbit every day, reinforcement-learning post-training of an LLM on two
 GPUs, sandboxed RL environments for coding agents, a tokenizer that needs fewer tokens than GPT-4o's and
 Gemini's in 23 of 24 Indian languages, mixture-of-experts serving across GPUs, an LLM
 inference cluster in C++, CUDA and Swift, distributed training on my own collectives, and five Rust
@@ -45,6 +46,16 @@ fix reverted; [#199441](https://github.com/pytorch/pytorch/pull/199441) checked 
 forward/backward mode mismatch, so 8 now run under torch.compile and 11 stay skipped with verified causes.
 
 `C++20` `CUDA` `Swift` `Python` `PyTorch`
+
+---
+
+## 🛰️ Space traffic
+
+| | What it is | What it measures |
+|---|---|---|
+| **[kessler](https://github.com/Shakhtar-Sankur/kessler)** · [live globe](https://shakhtar-sankur.github.io/kessler/) | An independent, open-source **auditor of space traffic**: one **C++** SGP4 propagator compiled for CPU and **CUDA**, all-vs-all conjunction screening with a GPU spatial hash (proven against brute force), collision probability (Foster, Alfano), and a test of SpaceX's reported collision avoidance against public orbit history; it screens the whole catalogue every day on GitHub Actions and publishes a 3D globe | Every pair of the **32,593** tracked objects screened for a day in **28 s** on a T4; reproduces CelesTrak SOCRATES's 100 closest conjunctions (median **0.24 m**) and NASA CARA's probabilities to **1.6e-8**; of SpaceX's **207,152** reported avoidance maneuvers, only about **half** leave a visible trace in public data, and satellites that maneuvered had predicted sub-km approaches just **1.3–1.5×** as often as those that did not |
+
+`C++20` `CUDA` `Python` `NumPy` `GitHub Actions` `three.js`
 
 ---
 
