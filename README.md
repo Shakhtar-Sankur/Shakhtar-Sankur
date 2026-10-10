@@ -28,8 +28,12 @@ systems with no dependencies. Each has the scripts and raw results behind its nu
 | **[relay](https://github.com/Shakhtar-Sankur/relay)** | A disaggregated LLM inference cluster: prefill and decode workers in **C++20/CUDA** with my own **flash-attention** and **flash-decoding** kernels, a KV-cache transfer engine, and a **Swift** control plane (C++ interop, OpenAI-compatible streaming API, prefix-aware routing). Fault-tolerant | On a T4, 2,048-token prefill **8.7× faster** and 32-sequence decode **5.4× faster** than its first kernels; streaming hides **99–100%** of the KV transfer (21.6 ms → 0.08 ms); **384 of 384** requests identical to a fault-free run through **60 random worker kills** |
 | **[tandem](https://github.com/Shakhtar-Sankur/tandem)** | Distributed training with no torch.distributed or NCCL: DDP, **ZeRO-1/2/3** (FSDP-style sharding), **GPipe** and **1F1B** on its own ring all-reduce, and a **C++/CUDA** engine (CUDA IPC, a fused reduce kernel) | On 2× T4, DDP and every ZeRO stage train **bit-identically to PyTorch DDP and FSDP**; all-reduce within **2% of NCCL's bandwidth** at 64–256 MB; the README says where it still loses: **86%** of PyTorch DDP's throughput |
 
-**Open source:** three pull requests to PyTorch, all under review.
-[#199875](https://github.com/pytorch/pytorch/pull/199875) makes torch.compile fill `torch.empty` in
+**Open source,** all under review. **vLLM**
+[#60955](https://github.com/vllm-project/vllm/pull/60955): running vLLM's FlashInfer tests on a T4 and
+checking every output against a float64 reference showed that the prefill tests compared non-causal
+attention with a causal reference, and passed only because their tolerance was larger than the outputs.
+With `causal=True` and a tolerance that matters, all 32 cases pass, and all 32 fail if the bug returns.
+**PyTorch:** [#199875](https://github.com/pytorch/pytorch/pull/199875) makes torch.compile fill `torch.empty` in
 deterministic mode as eager does, without filling Inductor's own buffers, which is what got an earlier
 fix reverted; [#199441](https://github.com/pytorch/pytorch/pull/199441) checked all 37 Inductor-skipped tests in
 `test_torch.py` on CPU and two T4 GPUs and removes 13 stale torch.compile skips;
