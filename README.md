@@ -33,6 +33,10 @@ systems with no dependencies. Each has the scripts and raw results behind its nu
 checking every output against a float64 reference showed that the prefill tests compared non-causal
 attention with a causal reference, and passed only because their tolerance was larger than the outputs.
 With `causal=True` and a tolerance that matters, all 32 cases pass, and all 32 fail if the bug returns.
+**Meta ExecuTorch** [#23677](https://github.com/pytorch/executorch/pull/23677): the 2-bit and 4-bit quantized
+embedding kernels that on-device LLMs use did not check their token ids, so an id past the end of the table
+read memory outside it and returned it as an embedding, while the 8-bit kernel rejects it. I added the same
+bounds check, with tests that fail without it; the quantized kernel suite passes 82 of 82.
 **PyTorch:** [#199875](https://github.com/pytorch/pytorch/pull/199875) makes torch.compile fill `torch.empty` in
 deterministic mode as eager does, without filling Inductor's own buffers, which is what got an earlier
 fix reverted; [#199441](https://github.com/pytorch/pytorch/pull/199441) checked all 37 Inductor-skipped tests in
