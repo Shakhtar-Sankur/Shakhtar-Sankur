@@ -1,8 +1,12 @@
 # Sankur Kundu
 
-**Co-founder & Founding Engineer at Gigzen.** I build systems that measure themselves.
+**ML systems engineer. I build systems that measure themselves, and check every number against a reference.**
 
-Two products, both written solo, from Postgres policies to the signed release build. One is
+Now building **[Babelguard](https://github.com/Shakhtar-Sankur/babelguard)**, an open early-warning
+system for scams that cross languages. Pull requests at **vLLM**, **PyTorch** and **Meta ExecuTorch**
+(the ExecuTorch one approved by two maintainers). Co-founder and founding engineer at **Gigzen**.
+
+At Gigzen, two products, both written solo, from Postgres policies to the signed release build. One is
 **Waggle**, local delivery as three Android apps (for riders, shops and customers) on one Postgres
 backend. The other is **Populace**, the testing tool I had to build to prove Waggle worked. Its first
 run found five defects in three and a half minutes, after a full manual test had passed.
@@ -18,6 +22,35 @@ systems with no dependencies. Each has the scripts and raw results behind its nu
 
 ---
 
+## 🛡️ Scam defence across languages
+
+| | What it is | What it measures |
+|---|---|---|
+| **[babelguard](https://github.com/Shakhtar-Sankur/babelguard)** · in progress | An open **early-warning system for scams that cross languages**: script-aware cleaning that removes the hidden characters and look-alike letters used to evade filters while keeping their legitimate uses in Indic, Arabic-script and Thai text; indicator extraction (links, phone numbers for 22 countries, UPI IDs, checksum-verified wallets); cross-language campaign linking with MinHash LSH; leak-free benchmark splits; an offline labelling tool for native speakers | In the largest open set of reported scam SMS (IMC 2025: **33,869** messages, **49** languages), South Asian languages are **0.8%** and African **0.1%**; **96** scam templates recur across languages; only **4 of 49** languages have any genuine messages to measure false alarms against; in one public benchmark's random split, **22.5%** of test scams had a near-copy in training |
+
+`Python` `NumPy` `Unicode (UTS #39)` `MinHash LSH` — defensive only: measurements and fixes are published, never evasion kits.
+
+---
+
+## 🤝 Open source
+
+- **vLLM** [#60955](https://github.com/vllm-project/vllm/pull/60955) (under review): running vLLM's FlashInfer tests on a T4 and
+checking every output against a float64 reference showed that the prefill tests compared non-causal
+attention with a causal reference, and passed only because their tolerance was larger than the outputs.
+With `causal=True` and a tolerance that matters, all 32 cases pass, and all 32 fail if the bug returns.
+- **Meta ExecuTorch** [#23677](https://github.com/pytorch/executorch/pull/23677) (approved by two maintainers): the 2-bit and 4-bit quantized
+embedding kernels that on-device LLMs use did not check their token ids, so an id past the end of the table
+read memory outside it and returned it as an embedding, while the 8-bit kernel rejects it. I added the same
+bounds check, with tests that fail without it; the quantized kernel suite passes 82 of 82.
+- **PyTorch** (under review): [#199875](https://github.com/pytorch/pytorch/pull/199875) makes torch.compile fill `torch.empty` in
+deterministic mode as eager does, without filling Inductor's own buffers, which is what got an earlier
+fix reverted; [#199441](https://github.com/pytorch/pytorch/pull/199441) checked all 37 Inductor-skipped tests in
+`test_torch.py` on CPU and two T4 GPUs and removes 13 stale torch.compile skips;
+[#199646](https://github.com/pytorch/pytorch/pull/199646) traces 19 skipped determinism tests to a
+forward/backward mode mismatch, so 8 now run under torch.compile and 11 stay skipped with verified causes.
+
+---
+
 ## 🚀 LLM training, serving and distributed training
 
 | | What it is | What it measures |
@@ -29,22 +62,6 @@ systems with no dependencies. Each has the scripts and raw results behind its nu
 | **[relay](https://github.com/Shakhtar-Sankur/relay)** | A disaggregated LLM inference cluster: prefill and decode workers in **C++20/CUDA** with my own **flash-attention** and **flash-decoding** kernels, a KV-cache transfer engine, and a **Swift** control plane (C++ interop, OpenAI-compatible streaming API, prefix-aware routing). Fault-tolerant | On a T4, 2,048-token prefill **8.7× faster** and 32-sequence decode **5.4× faster** than its first kernels; streaming hides **99–100%** of the KV transfer (21.6 ms → 0.08 ms); **384 of 384** requests identical to a fault-free run through **60 random worker kills** |
 | **[tandem](https://github.com/Shakhtar-Sankur/tandem)** | Distributed training with no torch.distributed or NCCL: DDP, **ZeRO-1/2/3** (FSDP-style sharding), **GPipe** and **1F1B** on its own ring all-reduce, and a **C++/CUDA** engine (CUDA IPC, a fused reduce kernel) | On 2× T4, DDP and every ZeRO stage train **bit-identically to PyTorch DDP and FSDP**; all-reduce within **2% of NCCL's bandwidth** at 64–256 MB; the README says where it still loses: **86%** of PyTorch DDP's throughput |
 
-**Open source,** all under review. **vLLM**
-[#60955](https://github.com/vllm-project/vllm/pull/60955): running vLLM's FlashInfer tests on a T4 and
-checking every output against a float64 reference showed that the prefill tests compared non-causal
-attention with a causal reference, and passed only because their tolerance was larger than the outputs.
-With `causal=True` and a tolerance that matters, all 32 cases pass, and all 32 fail if the bug returns.
-**Meta ExecuTorch** [#23677](https://github.com/pytorch/executorch/pull/23677): the 2-bit and 4-bit quantized
-embedding kernels that on-device LLMs use did not check their token ids, so an id past the end of the table
-read memory outside it and returned it as an embedding, while the 8-bit kernel rejects it. I added the same
-bounds check, with tests that fail without it; the quantized kernel suite passes 82 of 82.
-**PyTorch:** [#199875](https://github.com/pytorch/pytorch/pull/199875) makes torch.compile fill `torch.empty` in
-deterministic mode as eager does, without filling Inductor's own buffers, which is what got an earlier
-fix reverted; [#199441](https://github.com/pytorch/pytorch/pull/199441) checked all 37 Inductor-skipped tests in
-`test_torch.py` on CPU and two T4 GPUs and removes 13 stale torch.compile skips;
-[#199646](https://github.com/pytorch/pytorch/pull/199646) traces 19 skipped determinism tests to a
-forward/backward mode mismatch, so 8 now run under torch.compile and 11 stay skipped with verified causes.
-
 `C++20` `CUDA` `Swift` `Python` `PyTorch`
 
 ---
@@ -54,6 +71,7 @@ forward/backward mode mismatch, so 8 now run under torch.compile and 11 stay ski
 | | What it is | What it measures |
 |---|---|---|
 | **[kessler](https://github.com/Shakhtar-Sankur/kessler)** · [live globe](https://shakhtar-sankur.github.io/kessler/) | An independent, open-source **auditor of space traffic**: one **C++** SGP4 propagator compiled for CPU and **CUDA**, all-vs-all conjunction screening with a GPU spatial hash (proven against brute force), collision probability (Foster, Alfano), and a maneuver detector for auditing operators' collision-avoidance reports; it screens the whole catalogue every day on GitHub Actions and publishes a 3D globe | Every pair of the **32,593** tracked objects screened for a day in **28 s** on a T4; reproduces CelesTrak SOCRATES's 100 closest conjunctions (median **0.24 m**) and NASA CARA's probabilities to **1.6e-8** |
+| **[kessler-commons](https://github.com/Shakhtar-Sankur/kessler-commons)** · in progress | **Orbital Watch**: an open, multi-operator record of what satellites do in orbit, built only on open data. Finds every detectable orbit change of every satellite, by operator, and tags each with geomagnetic storm conditions (NOAA Kp), so storm drag is not mistaken for a manoeuvre | Detector and storm tagging tested on synthetic histories with known manoeuvres; results stay private until the data providers confirm that publishing derived results is allowed |
 
 
 `C++20` `CUDA` `Python` `NumPy` `GitHub Actions` `three.js`
