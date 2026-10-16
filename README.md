@@ -2,8 +2,9 @@
 
 **ML systems engineer and independent researcher. I build the systems that train and serve AI, and measure who they leave out.**
 
-Sole author of three manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
-**training–inference mismatch** in RL post-training, and on how **scam defence stops at English**.
+Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
+**training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
+**satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
 Pull requests at **vLLM**, **PyTorch** and **Meta ExecuTorch** (the ExecuTorch one approved by two
 maintainers). Co-founder and founding engineer at **Gigzen**.
 
@@ -25,6 +26,7 @@ study page with its method, results, stated limits and a citation.
 | **[The token tax](https://shakhtar-sankur.github.io/token-tax/)** · [lipi](https://github.com/Shakhtar-Sankur/lipi) · [on Hugging Face](https://huggingface.co/Shakhtar-Sankur/lipi-indic-96k) | *Removing the Token Tax from an Existing Model: A Vocabulary Extension for 24 Indian Languages That Keeps Every Other Token.* Manuscript, 2026; arXiv submission in progress | Odia costs **4.99×** English on GPT-4o. lipi-Indic extends Qwen 2.5's tokenizer without changing a single English or code token id, and needs **fewer tokens than GPT-4o's and Gemini's in 23 of 24** languages; in equal GPU time the model predicts held-out Odia **20% better**. Try every tokenizer in the browser on the study page |
 | **[The sampler was not the policy](https://shakhtar-sankur.github.io/ratchet/)** · [ratchet](https://github.com/Shakhtar-Sankur/ratchet) | *The Sampler Was Not the Policy: Finding and Removing a Silent Training–Inference Mismatch in a From-Scratch GRPO Stack.* Technical report, 2026; arXiv submission in progress | The inference engine's fp16 weights rounded away most training updates, so it sampled a policy the trainer never had (gap up to **5.2 nats**); mixed-precision rounding cut it to **0.04**. Taking the gap apart shows rounding at weight sync outweighs fp16 arithmetic **9–22×**, and low-probability tokens carry it |
 | **[Scam defence stops at English](https://shakhtar-sankur.github.io/babelguard/)** · [babelguard](https://github.com/Shakhtar-Sankur/babelguard) | *Scam Defence Stops at English: Measuring the Multilingual Protection Gap and Linking Scam Campaigns Across Languages.* Manuscript in preparation, 2026 | An English keyword filter catches **86%** of English scams but **10–36%** of Korean, Japanese, Urdu, Arabic, Thai and Hindi ones. Linking by meaning recognises a translated scam **85%** of the time, against **1.5%** for text matching |
+| **[Satellite collision risk](https://shakhtar-sankur.github.io/kessler/)** · [kessler](https://github.com/Shakhtar-Sankur/kessler) · [paper](https://github.com/Shakhtar-Sankur/kessler/blob/main/paper/main.pdf) | *Reproducing NASA CARA's Monte Carlo Probability of Collision: An Open Two-Body Implementation, Checked on All 53 of CARA's Test Conjunctions.* Manuscript, 2026; arXiv submission in progress | An open two-body Monte Carlo agrees with NASA CARA's on **all 53** of its test conjunctions (χ² p = 0.67), including the 28 where the standard 2D method is wrong, and runs **15–19×** faster per core than CARA's own library |
 
 ---
 
