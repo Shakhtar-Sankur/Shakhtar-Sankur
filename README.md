@@ -5,8 +5,8 @@
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
 **satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
-Pull requests at **vLLM**, **PyTorch** and **Meta ExecuTorch** (the ExecuTorch one approved by two
-maintainers). Co-founder and founding engineer at **Gigzen**.
+Pull requests at **vLLM**, **PyTorch**, **Meta ExecuTorch** and **OpenEnv** (the ExecuTorch one approved
+by two maintainers). Co-founder and founding engineer at **Gigzen**.
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
@@ -60,6 +60,12 @@ fix reverted; [#199441](https://github.com/pytorch/pytorch/pull/199441) checked 
 `test_torch.py` on CPU and two T4 GPUs and removes 13 stale torch.compile skips;
 [#199646](https://github.com/pytorch/pytorch/pull/199646) traces 19 skipped determinism tests to a
 forward/backward mode mismatch, so 8 now run under torch.compile and 11 stay skipped with verified causes.
+- **OpenEnv** (under review), the RL environment framework backed by Meta-PyTorch and Hugging Face:
+[#1441](https://github.com/huggingface/OpenEnv/pull/1441) makes composite reward rubrics (`Sequential`, `Gate`,
+`WeightedSum`) run their pre-hooks before scoring their children, as single rubrics do; on `main`, a timing
+hook around two 0.2 s children read 0.01 ms. [#1442](https://github.com/huggingface/OpenEnv/pull/1442) awaits
+an async child returned by a sync `forward()`, the pattern in the rubrics tutorial, which had recorded an
+unawaited coroutine as the score. 9 of the 13 new tests fail without the fixes.
 
 ---
 
