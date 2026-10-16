@@ -5,8 +5,8 @@
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
 **satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
-Pull requests at **vLLM**, **PyTorch**, **Meta ExecuTorch** and **OpenEnv** (the ExecuTorch one approved
-by two maintainers). Co-founder and founding engineer at **Gigzen**.
+Pull requests at **Meta ExecuTorch** (approved by two maintainers), **vLLM**, **PyTorch** and
+**OpenEnv**. Co-founder and founding engineer at **Gigzen**.
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
