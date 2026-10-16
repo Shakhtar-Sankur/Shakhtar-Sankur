@@ -5,8 +5,7 @@
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
 **satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
-Pull requests at **Meta ExecuTorch** (approved by two maintainers), **vLLM**, **PyTorch** and
-**OpenEnv**. Co-founder and founding engineer at **Gigzen**.
+A fix merged into **Meta ExecuTorch**, and pull requests at **vLLM**, **PyTorch** and **OpenEnv**. Co-founder and founding engineer at **Gigzen**.
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
@@ -46,7 +45,7 @@ study page with its method, results, stated limits and a citation.
 checking every output against a float64 reference showed that the prefill tests compared non-causal
 attention with a causal reference, and passed only because their tolerance was larger than the outputs.
 With `causal=True` and a tolerance that matters, all 32 cases pass, and all 32 fail if the bug returns.
-- **Meta ExecuTorch** [#23677](https://github.com/pytorch/executorch/pull/23677) (approved by two maintainers): the 2-bit and 4-bit quantized
+- **Meta ExecuTorch** [#23677](https://github.com/pytorch/executorch/pull/23677) (merged 16 Oct 2026, approved by two maintainers): the 2-bit and 4-bit quantized
 embedding kernels that on-device LLMs use did not check their token ids, so an id past the end of the table
 read memory outside it and returned it as an embedding, while the 8-bit kernel rejects it. I added the same
 bounds check, with tests that fail without it; the quantized kernel suite passes 82 of 82.
