@@ -5,7 +5,7 @@
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
 **satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
-Fixes merged into **Meta ExecuTorch** and **Hugging Face OpenEnv**, and pull requests under review at **Google JAX**, **NVIDIA**, **vLLM** and **PyTorch**. Co-founder and founding engineer at **Gigzen**.
+Fixes merged into **Meta ExecuTorch** and **Hugging Face OpenEnv**, and pull requests under review at **Google JAX**, **NVIDIA**, **Apple MLX**, **vLLM** and **PyTorch**. Co-founder and founding engineer at **Gigzen**.
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
@@ -82,6 +82,10 @@ offsets, built only from transposable primitives and in the same order XLA evalu
 - **NVIDIA Ising-Decoding** [#98](https://github.com/NVIDIA/Ising-Decoding/pull/98) (under review): the public-model tests, offline
 smoke test and docs looked only for `.pt` checkpoints, so anyone using the SafeTensors models NVIDIA publishes on
 Hugging Face failed them. They now accept the published files, with tests that fail on `main`.
+- **Apple MLX** [#4737](https://github.com/ml-explore/mlx/pull/4737) (under review): the socket threads of MLX's distributed ring
+backend, the TCP transport that links machines for multi-machine runs, read their task queues outside the lock while other
+threads appended to them. They now take the front tasks while holding it. A ThreadSanitizer harness built from the class
+found 2–4 races on every run before the fix and none after, and MLX's ring tests pass on 8 ranks.
 - **Meta ExecuTorch** [#23912](https://github.com/pytorch/executorch/pull/23912) (under review): the same kernels checked their zero points
 against the output type instead of the scales' type, so valid models with fp16 scales and fp32 output aborted, and
 the `.out` variants read past the end of their scales (AddressSanitizer: heap-buffer-overflow). With the fix the
