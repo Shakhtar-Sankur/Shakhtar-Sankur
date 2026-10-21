@@ -5,7 +5,7 @@
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
 **satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
-Fixes merged into **Meta ExecuTorch** and **Hugging Face OpenEnv**, and pull requests at **vLLM** and **PyTorch**. Co-founder and founding engineer at **Gigzen**.
+Fixes merged into **Meta ExecuTorch** and **Hugging Face OpenEnv**, and pull requests under review at **Google JAX**, **NVIDIA**, **vLLM** and **PyTorch**. Co-founder and founding engineer at **Gigzen**.
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
@@ -74,6 +74,14 @@ bounds check, with tests that fail without it; the quantized kernel suite passes
 hook around two 0.2 s children read 0.01 ms. [#1442](https://github.com/huggingface/OpenEnv/pull/1442) awaits
 an async child returned by a sync `forward()`, the pattern in the rubrics tutorial, which had recorded an
 unawaited coroutine as the score. 9 of the 13 new tests fail without the fixes.
+- **Google JAX** [#41859](https://github.com/jax-ml/jax/pull/41859) (under review): `jax.grad` through `lax.reduce_window`
+with a custom reduction has failed since 2021 ([#7815](https://github.com/jax-ml/jax/issues/7815)), because its derivative was a
+single primitive over (value, tangent) pairs that JAX cannot transpose. The derivative is now a fold over the window
+offsets, built only from transposable primitives and in the same order XLA evaluates the reduction; it also fixes
+[#32548](https://github.com/jax-ml/jax/issues/32548). 2,097 cases pass in 32-bit and 2,578 in 64-bit; the 242 new ones fail on `main`.
+- **NVIDIA Ising-Decoding** [#98](https://github.com/NVIDIA/Ising-Decoding/pull/98) (under review): the public-model tests, offline
+smoke test and docs looked only for `.pt` checkpoints, so anyone using the SafeTensors models NVIDIA publishes on
+Hugging Face failed them. They now accept the published files, with tests that fail on `main`.
 - **Meta ExecuTorch** [#23912](https://github.com/pytorch/executorch/pull/23912) (under review): the same kernels checked their zero points
 against the output type instead of the scales' type, so valid models with fp16 scales and fp32 output aborted, and
 the `.out` variants read past the end of their scales (AddressSanitizer: heap-buffer-overflow). With the fix the
@@ -103,6 +111,16 @@ forward/backward mode mismatch, so 8 now run under torch.compile and 11 stay ski
 | **[tandem](https://github.com/Shakhtar-Sankur/tandem)** · [study](https://shakhtar-sankur.github.io/tandem/) | Distributed training with no torch.distributed or NCCL: DDP, **ZeRO-1/2/3** (FSDP-style sharding), **GPipe** and **1F1B** on its own ring all-reduce, and a **C++/CUDA** engine (CUDA IPC, a fused reduce kernel) | On 2× T4, DDP and every ZeRO stage train **bit-identically to PyTorch DDP and FSDP**; all-reduce within **2% of NCCL's bandwidth** at 64–256 MB; the README says where it still loses: **86%** of PyTorch DDP's throughput |
 
 `C++20` `CUDA` `Swift` `Python` `PyTorch`
+
+---
+
+## ⚛️ Quantum error correction
+
+| | What it is | What it measures |
+|---|---|---|
+| **[parity](https://github.com/Shakhtar-Sankur/parity)** | An open, independent benchmark for **quantum error-correction decoders**: every decoder on the same Stim circuits, noise, seeds and machine, and each one reproduced against its own published claim before it is compared | Reproduced PyMatching 2 / Sparse Blossom's scaling (d = 29 vs 17: **6.2×**, paper 5.6×) and threshold crossings (**0.67–0.80%**); ran NVIDIA's Ising pre-decoders through NVIDIA's own pipeline on **524,288** shots per distance, with inputs checked against NVIDIA's own logs to every printed digit. Next: an open GPU decoder for IBM's qLDPC codes |
+
+`Python` `Stim` `PyMatching` `CUDA`
 
 ---
 
