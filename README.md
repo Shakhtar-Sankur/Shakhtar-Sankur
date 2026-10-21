@@ -9,8 +9,8 @@ Fixes merged into **Meta ExecuTorch** and **Hugging Face OpenEnv**, and pull req
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
-beats **GPT-4o's and Gemini's** in 23 of 24 Indian languages, and **kessler**, which screens every active
-satellite in public each day and whose collision probabilities agree with NASA CARA's Monte Carlo on all
+beats **GPT-4o's and Gemini's** in 23 of 24 Indian languages, and **kessler**, which screens **140 million**
+pairs of active satellites in public every day and whose collision probabilities agree with NASA CARA's Monte Carlo on all
 53 of NASA's test conjunctions, **15–19× faster** per core than NASA's own library. Each project has the scripts and raw results behind its numbers, and a
 study page with its method, results, stated limits and a citation.
 
