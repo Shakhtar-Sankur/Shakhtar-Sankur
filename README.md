@@ -1,6 +1,6 @@
 # Sankur Kundu
 
-**ML systems engineer and independent researcher. I build the systems that train and serve AI, and measure who they leave out.**
+**ML systems engineer and independent researcher. I build AI systems from scratch that match the world's best (NVIDIA's cuBLAS, vLLM, NASA), and make them work for the people AI leaves out.**
 
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
