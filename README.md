@@ -1,6 +1,6 @@
 # Sankur Kundu
 
-**ML systems engineer and independent researcher. I build ML infrastructure from scratch that matches the world's best (NVIDIA's cuBLAS, vLLM, NASA), and make it work for the people today's models leave out.**
+**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · Fixes merged at Meta and Hugging Face**
 
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
