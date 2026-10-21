@@ -5,7 +5,7 @@
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
 **satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
-A fix merged into **Meta ExecuTorch**, and pull requests at **vLLM**, **PyTorch** and **OpenEnv**. Co-founder and founding engineer at **Gigzen**.
+Fixes merged into **Meta ExecuTorch** and **Hugging Face OpenEnv**, and pull requests at **vLLM** and **PyTorch**. Co-founder and founding engineer at **Gigzen**.
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
@@ -15,6 +15,18 @@ satellite in public each day and whose collision probabilities agree with NASA C
 study page with its method, results, stated limits and a citation.
 
 🧑‍💻 [portfolio](https://shakhtar-sankur.github.io) · 📄 [résumé](https://shakhtar-sankur.github.io/Sankur-Kundu-Resume.pdf) · 📚 [full CV](https://shakhtar-sankur.github.io/Sankur-Kundu-CV.pdf) · 🌐 [gigzen](https://shakhtar-sankur.github.io/gigzen/) · 📧 sankur.kundu.tw@gmail.com
+
+---
+
+## 🏅 Recognition
+
+- **NASA CARA**: I sent CARA my independent reproduction of its Monte Carlo collision probabilities on all 53 of its
+test conjunctions; its operations team lead referred it to CARA's analysis team, which will investigate and report its findings (20 Oct 2026).
+- **Entrepreneur First** (UK): scouted me from my public work alone (Oct 2026), citing tessel's cuBLAS-parity GEMM,
+switchyard's MoE serving and a negative result I chose to publish.
+- **Meta and Hugging Face**: maintainers merged my fixes to ExecuTorch's on-device LLM kernels
+([#23677](https://github.com/pytorch/executorch/pull/23677), approved by two Meta maintainers) and to OpenEnv's RL reward rubrics
+([#1441](https://github.com/huggingface/OpenEnv/pull/1441), [#1442](https://github.com/huggingface/OpenEnv/pull/1442)), 16–19 Oct 2026.
 
 ---
 
@@ -41,30 +53,30 @@ study page with its method, results, stated limits and a citation.
 
 ## 🤝 Open source
 
-- **vLLM** [#60955](https://github.com/vllm-project/vllm/pull/60955) (under review): running vLLM's FlashInfer tests on a T4 and
-checking every output against a float64 reference showed that the prefill tests compared non-causal
-attention with a causal reference, and passed only because their tolerance was larger than the outputs.
-With `causal=True` and a tolerance that matters, all 32 cases pass, and all 32 fail if the bug returns.
 - **Meta ExecuTorch** [#23677](https://github.com/pytorch/executorch/pull/23677) (merged 16 Oct 2026, approved by two maintainers): the 2-bit and 4-bit quantized
 embedding kernels that on-device LLMs use did not check their token ids, so an id past the end of the table
 read memory outside it and returned it as an embedding, while the 8-bit kernel rejects it. I added the same
 bounds check, with tests that fail without it; the quantized kernel suite passes 82 of 82.
+- **Hugging Face OpenEnv** (both merged 19 Oct 2026, reviewed by Hugging Face), the framework for RL environments:
+[#1441](https://github.com/huggingface/OpenEnv/pull/1441) makes composite reward rubrics (`Sequential`, `Gate`,
+`WeightedSum`) run their pre-hooks before scoring their children, as single rubrics do; on `main`, a timing
+hook around two 0.2 s children read 0.01 ms. [#1442](https://github.com/huggingface/OpenEnv/pull/1442) awaits
+an async child returned by a sync `forward()`, the pattern in the rubrics tutorial, which had recorded an
+unawaited coroutine as the score. 9 of the 13 new tests fail without the fixes.
 - **Meta ExecuTorch** [#23912](https://github.com/pytorch/executorch/pull/23912) (under review): the same kernels checked their zero points
 against the output type instead of the scales' type, so valid models with fp16 scales and fp32 output aborted, and
 the `.out` variants read past the end of their scales (AddressSanitizer: heap-buffer-overflow). With the fix the
 quantized kernel suite passes 86 of 86; without it, all 6 new tests fail.
+- **vLLM** [#60955](https://github.com/vllm-project/vllm/pull/60955) (under review): running vLLM's FlashInfer tests on a T4 and
+checking every output against a float64 reference showed that the prefill tests compared non-causal
+attention with a causal reference, and passed only because their tolerance was larger than the outputs.
+With `causal=True` and a tolerance that matters, all 32 cases pass, and all 32 fail if the bug returns.
 - **PyTorch** (under review): [#199875](https://github.com/pytorch/pytorch/pull/199875) makes torch.compile fill `torch.empty` in
 deterministic mode as eager does, without filling Inductor's own buffers, which is what got an earlier
 fix reverted; [#199441](https://github.com/pytorch/pytorch/pull/199441) checked all 37 Inductor-skipped tests in
 `test_torch.py` on CPU and two T4 GPUs and removes 13 stale torch.compile skips;
 [#199646](https://github.com/pytorch/pytorch/pull/199646) traces 19 skipped determinism tests to a
 forward/backward mode mismatch, so 8 now run under torch.compile and 11 stay skipped with verified causes.
-- **OpenEnv** (under review), the RL environment framework backed by Meta-PyTorch and Hugging Face:
-[#1441](https://github.com/huggingface/OpenEnv/pull/1441) makes composite reward rubrics (`Sequential`, `Gate`,
-`WeightedSum`) run their pre-hooks before scoring their children, as single rubrics do; on `main`, a timing
-hook around two 0.2 s children read 0.01 ms. [#1442](https://github.com/huggingface/OpenEnv/pull/1442) awaits
-an async child returned by a sync `forward()`, the pattern in the rubrics tutorial, which had recorded an
-unawaited coroutine as the score. 9 of the 13 new tests fail without the fixes.
 
 ---
 
