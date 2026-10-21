@@ -28,6 +28,17 @@ switchyard's MoE serving and a negative result I chose to publish.
 ([#23677](https://github.com/pytorch/executorch/pull/23677), approved by two Meta maintainers) and to OpenEnv's RL reward rubrics
 ([#1441](https://github.com/huggingface/OpenEnv/pull/1441), [#1442](https://github.com/huggingface/OpenEnv/pull/1442)), 16–19 Oct 2026.
 
+## 📈 Scale
+
+- **Every day, in public:** kessler screens all **140 million** pairs of the **16,768** active satellites (about **60,000**
+close approaches a day); the full **32,593**-object catalogue, all **531 million** pairs, takes **28 s** on one T4.
+- **Verified under failure:** quorumdb ran **10,000** simulated clusters through **610,064** crashes and **144,354**
+network partitions with zero safety violations; faultline ran **1.26 million** operations under **288** injected faults
+against four etcd releases.
+- **Breadth:** 13 open-source systems in C++, CUDA, Rust, Python and Swift, with kernels for NVIDIA GPUs, Apple Metal and
+Google TPUs; studies of **24** languages on **15** production tokenizers and **33,869** scams in **49** languages;
+Populace has **1,600+** npm downloads.
+
 ---
 
 ## 🔬 Research
