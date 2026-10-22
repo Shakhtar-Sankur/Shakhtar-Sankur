@@ -1,11 +1,11 @@
 # Sankur Kundu
 
-**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · Fixes merged at Meta and Hugging Face · In review at research labs of MIT and Oxford, UCL & Imperial**
+**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · Fixes merged at Meta and Hugging Face · In review at research labs of MIT, ETH Zurich and Oxford, UCL & Imperial**
 
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
 **satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
-Fixes merged into **Meta ExecuTorch** and **Hugging Face OpenEnv**, and pull requests under review at **Google JAX**, **NVIDIA**, **Apple MLX**, **vLLM**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**), [PyZX](https://github.com/zxcalc/pyzx/pull/563) (**Oxford**) and [BOLD Lab](https://github.com/bold-lab-ai/JaxMARL/pull/206) (**Oxford, UCL and Imperial**). Co-founder and founding engineer at **Gigzen**.
+Fixes merged into **Meta ExecuTorch** and **Hugging Face OpenEnv**, and pull requests under review at **Google JAX**, **NVIDIA**, **Apple MLX**, **vLLM**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**), [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**), [PyZX](https://github.com/zxcalc/pyzx/pull/563) (**Oxford**) and [BOLD Lab](https://github.com/bold-lab-ai/JaxMARL/pull/206) (**Oxford, UCL and Imperial**). Co-founder and founding engineer at **Gigzen**.
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
@@ -94,6 +94,10 @@ quantized kernel suite passes 86 of 86; without it, all 6 new tests fail.
 checking every output against a float64 reference showed that the prefill tests compared non-causal
 attention with a causal reference, and passed only because their tolerance was larger than the outputs.
 With `causal=True` and a tolerance that matters, all 32 cases pass, and all 32 fail if the bug returns.
+- **ETH Zurich DaCe** [#2729](https://github.com/spcl/dace/pull/2729) (under review): DaCe, the data-centric compiler from ETH
+Zurich's Scalable Parallel Computing Lab, compiled `numpy.rint` to C's `round`, which rounds halfway values away from zero, so
+compiled programs returned 3 for 2.5 where NumPy returns 2. Fixed for float and complex types; the new test fails without the fix.
+Also reported that `np.max`/`np.min` drop NaN ([#2730](https://github.com/spcl/dace/issues/2730)).
 - **Oxford PyZX** [#563](https://github.com/zxcalc/pyzx/pull/563) (under review): PyZX, the ZX-calculus library for quantum
 circuit optimisation, put an X rotation on the wrong qubit after rewriting two CNOTs as a SWAP, so `basic_optimization`,
 `full_optimize` and `phase_block_optimize` returned a different unitary for 25 of 100 random Clifford circuits (0 after the fix).
