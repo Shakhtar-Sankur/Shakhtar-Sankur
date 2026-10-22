@@ -1,11 +1,11 @@
 # Sankur Kundu
 
-**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · Fixes merged at Meta, Hugging Face and Oxford's PyZX · In review at research labs of MIT, CMU, ETH Zurich and Oxford, UCL & Imperial**
+**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · Fixes merged at Meta, Hugging Face and Oxford's PyZX · In review at research labs of MIT, Carnegie Mellon, ETH Zurich and Oxford, UCL & Imperial**
 
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
 **satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
-Fixes merged into **Meta ExecuTorch**, **Hugging Face OpenEnv** and Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator), and pull requests under review at **Google JAX**, **NVIDIA**, **Apple MLX**, **vLLM**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**), [XGrammar](https://github.com/mlc-ai/xgrammar/pull/1012) (**CMU**), [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**) and [BOLD Lab](https://github.com/bold-lab-ai/JaxMARL/pull/206) (**Oxford, UCL and Imperial**). Co-founder and founding engineer at **Gigzen**.
+Fixes merged into **Meta ExecuTorch**, **Hugging Face OpenEnv** and Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator), and pull requests under review at **Google JAX**, **NVIDIA**, **Apple MLX**, **vLLM**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**), [XGrammar](https://github.com/mlc-ai/xgrammar/pull/1012) (**Carnegie Mellon**), [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**) and [BOLD Lab](https://github.com/bold-lab-ai/JaxMARL/pull/206) (**Oxford, UCL and Imperial**). Co-founder and founding engineer at **Gigzen**.
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
@@ -108,7 +108,7 @@ circuit optimisation, put an X rotation on the wrong qubit after rewriting two C
 wrapper behind 8 of JaxMARL's Q-learning baselines (QMIX, VDN, IQL, PQN-VDN, SHAQ, TransfQMIX) replaced the first observation of
 every new episode with zeros after an auto-reset, so agents chose their first action blind and trained on it. Agents that die
 mid-episode still get zeros; two of the three new tests fail without the fix.
-- **CMU XGrammar** [#1012](https://github.com/mlc-ai/xgrammar/pull/1012) (under review): XGrammar, the structured-output engine used by vLLM and SGLang,
+- **Carnegie Mellon (CMU) XGrammar** [#1012](https://github.com/mlc-ai/xgrammar/pull/1012) (under review): XGrammar, the structured-output engine used by vLLM and SGLang,
 crashed in jump-forward decoding whenever a grammar forced only part of a UTF-8 character (e.g. `"é" | "è"`), the bug behind its issue #132; it now returns
 only whole characters, with four new tests that fail without the fix.
 - **MIT Han Lab nunchaku** [#957](https://github.com/nunchux-ai/nunchaku/pull/957) (under review): `compose_lora` returned a
