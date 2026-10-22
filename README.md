@@ -77,7 +77,7 @@ bounds check, with tests that fail without it; the quantized kernel suite passes
 hook around two 0.2 s children read 0.01 ms. [#1442](https://github.com/huggingface/OpenEnv/pull/1442) awaits
 an async child returned by a sync `forward()`, the pattern in the rubrics tutorial, which had recorded an
 unawaited coroutine as the score. 9 of the 13 new tests fail without the fixes.
-- **Google JAX** [#41859](https://github.com/jax-ml/jax/pull/41859) (under review): `jax.grad` through `lax.reduce_window`
+- **Google JAX** [#41859](https://github.com/jax-ml/jax/pull/41859) (under review; assigned to Matthew Johnson, one of JAX's original authors): `jax.grad` through `lax.reduce_window`
 with a custom reduction has failed since 2021 ([#7815](https://github.com/jax-ml/jax/issues/7815)), because its derivative was a
 single primitive over (value, tangent) pairs that JAX cannot transpose. The derivative is now a fold over the window
 offsets, built only from transposable primitives and in the same order XLA evaluates the reduction; it also fixes
