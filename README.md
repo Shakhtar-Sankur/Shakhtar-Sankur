@@ -94,6 +94,9 @@ quantized kernel suite passes 86 of 86; without it, all 6 new tests fail.
 checking every output against a float64 reference showed that the prefill tests compared non-causal
 attention with a causal reference, and passed only because their tolerance was larger than the outputs.
 With `causal=True` and a tolerance that matters, all 32 cases pass, and all 32 fail if the bug returns.
+- **MIT Han Lab nunchaku** [#957](https://github.com/nunchux-ai/nunchaku/pull/957) (under review): `compose_lora` returned a
+single Nunchaku-format LoRA at full strength whenever its strength was below 1, so 0.5 had no effect and 0 did not switch
+it off, with no error. Only strength 1 now takes that shortcut; three of the four new tests fail without the fix.
 - **PyTorch** (under review): [#199875](https://github.com/pytorch/pytorch/pull/199875) makes torch.compile fill `torch.empty` in
 deterministic mode as eager does, without filling Inductor's own buffers, which is what got an earlier
 fix reverted; [#199441](https://github.com/pytorch/pytorch/pull/199441) checked all 37 Inductor-skipped tests in
