@@ -1,6 +1,6 @@
 # Sankur Kundu
 
-**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's and 4.0× its CPU speed · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · Fixes merged at Meta and Hugging Face**
+**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · Fixes merged at Meta and Hugging Face**
 
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
@@ -122,7 +122,7 @@ forward/backward mode mismatch, so 8 now run under torch.compile and 11 stay ski
 
 | | What it is | What it measures |
 |---|---|---|
-| **[syndrome](https://github.com/Shakhtar-Sankur/syndrome)** · [study](https://shakhtar-sankur.github.io/syndrome/) | An open **GPU decoder for IBM's quantum LDPC codes**: IBM's Relay-BP for the [[144,12,12]] gross code (1,728 detectors, 67,752 error mechanisms, 391,320 edges), written once in C++ for the CPU and a CUDA thread block | On a T4, **bit-identical to IBM's reference on 256 of 256 shots**, in float64 and float32: every decoding, posterior and iteration count, up to all 301 relay legs. **4.0× faster than IBM's decoder on all CPU threads of the same machine** (199 vs 790 ms per shot, same predictions on 1,024 of 1,024 shots). IBM's published rate reproduced first (**41 vs 44** errors in 10,000) |
+| **[syndrome](https://github.com/Shakhtar-Sankur/syndrome)** · [study](https://shakhtar-sankur.github.io/syndrome/) | An open **GPU decoder for IBM's quantum LDPC codes**: IBM's Relay-BP for the [[144,12,12]] gross code (1,728 detectors, 67,752 error mechanisms, 391,320 edges), written once in C++ for the CPU and a CUDA thread block | On a T4, **bit-identical to IBM's reference on 256 of 256 shots**, in float64 and float32: every decoding, posterior and iteration count, up to all 301 relay legs. **One shot decodes 28.7× faster than IBM's decoder** (median 37.5 ms vs 1.08 s, whole GPU, identical on every shot), and a batch 4.0× faster than IBM's decoder on all CPU threads of the same machine. IBM's published rate reproduced first (**41 vs 44** errors in 10,000) |
 | **[parity](https://github.com/Shakhtar-Sankur/parity)** | An open, independent benchmark for **quantum error-correction decoders**: every decoder on the same Stim circuits, noise, seeds and machine, and each one reproduced against its own published claim before it is compared | Reproduced PyMatching 2 / Sparse Blossom's scaling (d = 29 vs 17: **6.2×**, paper 5.6×) and threshold crossings (**0.67–0.80%**); ran NVIDIA's Ising pre-decoders through NVIDIA's own pipeline on **524,288** shots per distance, with inputs checked against NVIDIA's own logs to every printed digit |
 
 `Python` `Stim` `PyMatching` `CUDA`
