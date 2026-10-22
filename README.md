@@ -24,9 +24,12 @@ study page with its method, results, stated limits and a citation.
 test conjunctions; its operations team lead referred it to CARA's analysis team, which will investigate and report its findings (20 Oct 2026).
 - **Entrepreneur First** (UK): scouted me from my public work alone (Oct 2026), citing tessel's cuBLAS-parity GEMM,
 switchyard's MoE serving and a negative result I chose to publish.
-- **Meta and Hugging Face**: maintainers merged my fixes to ExecuTorch's on-device LLM kernels
-([#23677](https://github.com/pytorch/executorch/pull/23677), approved by two Meta maintainers) and to OpenEnv's RL reward rubrics
-([#1441](https://github.com/huggingface/OpenEnv/pull/1441), [#1442](https://github.com/huggingface/OpenEnv/pull/1442)), 16–19 Oct 2026.
+- **Meta ExecuTorch** ([#23677](https://github.com/pytorch/executorch/pull/23677), merged 16 Oct 2026, approved by two Meta maintainers):
+“LGTM! Thanks for the fix!”
+- **Oxford PyZX** ([#563](https://github.com/zxcalc/pyzx/pull/563), merged 22 Oct 2026 by its co-creator John van de Wetering):
+“Thanks for the fix! This was a regression from an earlier PR that changed how XPhase gates were handled in optimization.”
+- **Hugging Face OpenEnv** ([#1441](https://github.com/huggingface/OpenEnv/pull/1441), [#1442](https://github.com/huggingface/OpenEnv/pull/1442),
+merged 19 Oct 2026), approved by its reviewer: “Reviewed hook ordering and async composition; 177 rubric tests pass.”
 
 ## 📈 Scale
 
