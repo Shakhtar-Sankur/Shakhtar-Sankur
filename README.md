@@ -5,7 +5,7 @@
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
 **satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
-Fixes merged into **Meta ExecuTorch**, **Hugging Face OpenEnv** and Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator), and pull requests under review at **Google JAX**, **NVIDIA**, **Apple MLX**, **vLLM**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**), [XGrammar](https://github.com/mlc-ai/xgrammar/pull/1012) (**Carnegie Mellon**), [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**) and [BOLD Lab](https://github.com/bold-lab-ai/JaxMARL/pull/206) (**Oxford, UCL and Imperial**). Co-founder and founding engineer at **Gigzen**.
+Fixes merged into **Meta ExecuTorch**, **Hugging Face OpenEnv** and Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator), a fix [approved](https://github.com/ml-explore/mlx/pull/4737) at **Apple MLX**, and pull requests under review at **Google JAX**, **NVIDIA**, **vLLM**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**), [XGrammar](https://github.com/mlc-ai/xgrammar/pull/1012) (**Carnegie Mellon**), [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**) and [BOLD Lab](https://github.com/bold-lab-ai/JaxMARL/pull/206) (**Oxford, UCL and Imperial**). Co-founder and founding engineer at **Gigzen**.
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
@@ -85,7 +85,7 @@ offsets, built only from transposable primitives and in the same order XLA evalu
 - **NVIDIA Ising-Decoding** [#98](https://github.com/NVIDIA/Ising-Decoding/pull/98) (under review): the public-model tests, offline
 smoke test and docs looked only for `.pt` checkpoints, so anyone using the SafeTensors models NVIDIA publishes on
 Hugging Face failed them. They now accept the published files, with tests that fail on `main`.
-- **Apple MLX** [#4737](https://github.com/ml-explore/mlx/pull/4737) (under review): the socket threads of MLX's distributed ring
+- **Apple MLX** [#4737](https://github.com/ml-explore/mlx/pull/4737) (**approved** 22 Oct 2026 by an MLX maintainer): the socket threads of MLX's distributed ring
 backend, the TCP transport that links machines for multi-machine runs, read their task queues outside the lock while other
 threads appended to them. They now take the front tasks while holding it. A ThreadSanitizer harness built from the class
 found 2–4 races on every run before the fix and none after, and MLX's ring tests pass on 8 ranks.
