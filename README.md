@@ -1,11 +1,11 @@
 # Sankur Kundu
 
-**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · Fixes merged at Meta, Hugging Face and Oxford's PyZX · In review at research labs of MIT, Carnegie Mellon, ETH Zurich and Oxford, UCL & Imperial**
+**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · 5 fixes merged at Apple, Meta, Hugging Face and Oxford's PyZX · In review at research labs of MIT, Carnegie Mellon, ETH Zurich and Oxford, UCL & Imperial**
 
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
 **satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
-Fixes merged into **Meta ExecuTorch**, **Hugging Face OpenEnv** and Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator), a fix [approved](https://github.com/ml-explore/mlx/pull/4737) at **Apple MLX**, and pull requests under review at **Google JAX**, **NVIDIA**, **vLLM**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**), [XGrammar](https://github.com/mlc-ai/xgrammar/pull/1012) (**Carnegie Mellon**), [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**) and [BOLD Lab](https://github.com/bold-lab-ai/JaxMARL/pull/206) (**Oxford, UCL and Imperial**). Co-founder and founding engineer at **Gigzen**.
+Five fixes merged in seven days into [**Apple MLX**](https://github.com/ml-explore/mlx/pull/4737), **Meta ExecuTorch**, **Hugging Face OpenEnv** and Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator), and pull requests under review at **Google JAX**, **NVIDIA**, **vLLM**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**), [XGrammar](https://github.com/mlc-ai/xgrammar/pull/1012) (**Carnegie Mellon**), [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**) and [BOLD Lab](https://github.com/bold-lab-ai/JaxMARL/pull/206) (**Oxford, UCL and Imperial**). Co-founder and founding engineer at **Gigzen**.
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
@@ -26,6 +26,8 @@ test conjunctions; its operations team lead referred it to CARA's analysis team,
 switchyard's MoE serving and a negative result I chose to publish.
 - **Meta ExecuTorch** ([#23677](https://github.com/pytorch/executorch/pull/23677), merged 16 Oct 2026, approved by two Meta maintainers):
 “LGTM! Thanks for the fix!”
+- **Apple MLX** ([#4737](https://github.com/ml-explore/mlx/pull/4737), merged 22 Oct 2026 by MLX maintainer @zcbenz after review and approval):
+my fix for a data race in the distributed backend that links Macs for multi-machine training.
 - **Oxford PyZX** ([#563](https://github.com/zxcalc/pyzx/pull/563), merged 22 Oct 2026 by its co-creator John van de Wetering):
 “Thanks for the fix! This was a regression from an earlier PR that changed how XPhase gates were handled in optimization.”
 - **Hugging Face OpenEnv** ([#1441](https://github.com/huggingface/OpenEnv/pull/1441), [#1442](https://github.com/huggingface/OpenEnv/pull/1442),
@@ -67,6 +69,10 @@ Populace has **1,600+** npm downloads.
 
 ## 🤝 Open source
 
+- **Apple MLX** [#4737](https://github.com/ml-explore/mlx/pull/4737) (**merged** 22 Oct 2026 by an MLX maintainer, after review and approval): the socket threads of MLX's distributed ring
+backend, the TCP transport that links machines for multi-machine runs, read their task queues outside the lock while other
+threads appended to them. They now take the front tasks while holding it. A ThreadSanitizer harness built from the class
+found 2–4 races on every run before the fix and none after, and MLX's ring tests pass on 8 ranks.
 - **Meta ExecuTorch** [#23677](https://github.com/pytorch/executorch/pull/23677) (merged 16 Oct 2026, approved by two maintainers): the 2-bit and 4-bit quantized
 embedding kernels that on-device LLMs use did not check their token ids, so an id past the end of the table
 read memory outside it and returned it as an embedding, while the 8-bit kernel rejects it. I added the same
@@ -85,10 +91,6 @@ offsets, built only from transposable primitives and in the same order XLA evalu
 - **NVIDIA Ising-Decoding** [#98](https://github.com/NVIDIA/Ising-Decoding/pull/98) (under review): the public-model tests, offline
 smoke test and docs looked only for `.pt` checkpoints, so anyone using the SafeTensors models NVIDIA publishes on
 Hugging Face failed them. They now accept the published files, with tests that fail on `main`.
-- **Apple MLX** [#4737](https://github.com/ml-explore/mlx/pull/4737) (**approved** 22 Oct 2026 by an MLX maintainer): the socket threads of MLX's distributed ring
-backend, the TCP transport that links machines for multi-machine runs, read their task queues outside the lock while other
-threads appended to them. They now take the front tasks while holding it. A ThreadSanitizer harness built from the class
-found 2–4 races on every run before the fix and none after, and MLX's ring tests pass on 8 ranks.
 - **Meta ExecuTorch** [#23912](https://github.com/pytorch/executorch/pull/23912) (under review): the same kernels checked their zero points
 against the output type instead of the scales' type, so valid models with fp16 scales and fp32 output aborted, and
 the `.out` variants read past the end of their scales (AddressSanitizer: heap-buffer-overflow). With the fix the
