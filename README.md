@@ -1,6 +1,6 @@
 # Sankur Kundu
 
-**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · 6 fixes merged in 11 days at Apple, Meta, Hugging Face, Oxford's PyZX and JaxMARL · In review at research labs of MIT, Carnegie Mellon and ETH Zurich**
+**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · 7 fixes merged in 13 days at Apple, Meta, Hugging Face, Oxford's PyZX and JaxMARL · In review at research labs of MIT, Carnegie Mellon and ETH Zurich**
 
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
