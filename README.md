@@ -1,11 +1,11 @@
 # Sankur Kundu
 
-**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · 5 fixes merged at Apple, Meta, Hugging Face and Oxford's PyZX · In review at research labs of MIT, Carnegie Mellon, ETH Zurich and Oxford, UCL & Imperial**
+**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · 6 fixes merged in 11 days at Apple, Meta, Hugging Face, Oxford's PyZX and JaxMARL · In review at research labs of MIT, Carnegie Mellon and ETH Zurich**
 
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
 **satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
-Five fixes merged in seven days into [**Apple MLX**](https://github.com/ml-explore/mlx/pull/4737), **Meta ExecuTorch**, **Hugging Face OpenEnv** and Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator), and pull requests under review at **Google JAX**, **NVIDIA**, **vLLM**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**), [XGrammar](https://github.com/mlc-ai/xgrammar/pull/1012) (**Carnegie Mellon**), [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**) and [BOLD Lab](https://github.com/bold-lab-ai/JaxMARL/pull/206) (**Oxford, UCL and Imperial**). Co-founder and founding engineer at **Gigzen**.
+Six fixes merged in 11 days into [**Apple MLX**](https://github.com/ml-explore/mlx/pull/4737), **Meta ExecuTorch**, **Hugging Face OpenEnv**, Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator) and [**JaxMARL**](https://github.com/bold-lab-ai/JaxMARL/pull/206) (merged by its lead author; BOLD Lab: **Oxford, UCL and Imperial**), and pull requests under review at **Google JAX**, **NVIDIA**, **vLLM**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**), [XGrammar](https://github.com/mlc-ai/xgrammar/pull/1012) (**Carnegie Mellon**) and [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**). Co-founder and founding engineer at **Gigzen**.
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
@@ -30,6 +30,8 @@ switchyard's MoE serving and a negative result I chose to publish.
 my fix for a data race in the distributed backend that links Macs for multi-machine training.
 - **Oxford PyZX** ([#563](https://github.com/zxcalc/pyzx/pull/563), merged 22 Oct 2026 by its co-creator John van de Wetering):
 “Thanks for the fix! This was a regression from an earlier PR that changed how XPhase gates were handled in optimization.”
+- **JaxMARL** ([#206](https://github.com/bold-lab-ai/JaxMARL/pull/206), NeurIPS 2024; BOLD Lab: Oxford, UCL & Imperial; merged 26 Oct 2026 by lead author Alex Rutherford after his approval):
+“Good find!!”
 - **Hugging Face OpenEnv** ([#1441](https://github.com/huggingface/OpenEnv/pull/1441), [#1442](https://github.com/huggingface/OpenEnv/pull/1442),
 merged 19 Oct 2026), approved by its reviewer: “Reviewed hook ordering and async composition; 177 rubric tests pass.”
 
@@ -40,7 +42,7 @@ close approaches a day); the full **32,593**-object catalogue, all **531 million
 - **Verified under failure:** quorumdb ran **10,000** simulated clusters through **610,064** crashes and **144,354**
 network partitions with zero safety violations; faultline ran **1.26 million** operations under **288** injected faults
 against four etcd releases.
-- **Breadth:** 13 open-source systems in C++, CUDA, Rust, Python and Swift, with kernels for NVIDIA GPUs, Apple Metal and
+- **Breadth:** 16 open-source systems in C++, CUDA, Rust, Python and Swift, with kernels for NVIDIA GPUs, Apple Metal and
 Google TPUs; studies of **24** languages on **15** production tokenizers and **33,869** scams in **49** languages;
 Populace has **1,600+** npm downloads.
 
@@ -94,7 +96,7 @@ Hugging Face failed them. They now accept the published files, with tests that f
 - **Meta ExecuTorch** [#23912](https://github.com/pytorch/executorch/pull/23912) (under review): the same kernels checked their zero points
 against the output type instead of the scales' type, so valid models with fp16 scales and fp32 output aborted, and
 the `.out` variants read past the end of their scales (AddressSanitizer: heap-buffer-overflow). With the fix the
-quantized kernel suite passes 86 of 86; without it, all 6 new tests fail.
+quantized kernel suite passes 86 of 86; without it, all 6 new tests fail. Revised after maintainer review so the 2- and 4-bit export kernels also report the scales' dtype.
 - **vLLM** [#60955](https://github.com/vllm-project/vllm/pull/60955) (under review): running vLLM's FlashInfer tests on a T4 and
 checking every output against a float64 reference showed that the prefill tests compared non-causal
 attention with a causal reference, and passed only because their tolerance was larger than the outputs.
@@ -106,7 +108,7 @@ Also reported that `np.max`/`np.min` drop NaN ([#2730](https://github.com/spcl/d
 - **Oxford PyZX** [#563](https://github.com/zxcalc/pyzx/pull/563) (**merged** by co-creator John van de Wetering, 22 Oct 2026): PyZX, the ZX-calculus library for quantum
 circuit optimisation, put an X rotation on the wrong qubit after rewriting two CNOTs as a SWAP, so `basic_optimization`,
 `full_optimize` and `phase_block_optimize` returned a different unitary for 25 of 100 random Clifford circuits (0 after the fix).
-- **BOLD Lab (Oxford, UCL, Imperial) JaxMARL** [#206](https://github.com/bold-lab-ai/JaxMARL/pull/206) (under review): the rollout
+- **BOLD Lab (Oxford, UCL, Imperial) JaxMARL** [#206](https://github.com/bold-lab-ai/JaxMARL/pull/206) (**merged** 26 Oct 2026 by lead author Alex Rutherford: “Good find!!”): the rollout
 wrapper behind 8 of JaxMARL's Q-learning baselines (QMIX, VDN, IQL, PQN-VDN, SHAQ, TransfQMIX) replaced the first observation of
 every new episode with zeros after an auto-reset, so agents chose their first action blind and trained on it. Agents that die
 mid-episode still get zeros; two of the three new tests fail without the fix.
@@ -135,6 +137,7 @@ forward/backward mode mismatch, so 8 now run under torch.compile and 11 stay ski
 | **[lipi](https://github.com/Shakhtar-Sankur/lipi)** · [study](https://shakhtar-sankur.github.io/token-tax/) · [on Hugging Face](https://huggingface.co/Shakhtar-Sankur/lipi-indic-96k) | The **token tax** on Indian languages, measured and then cut: 24 languages × 15 production tokenizers, then **lipi-Indic**, Qwen 2.5's byte-level **BPE** tokenizer extended for every Indian language (a pre-tokenizer fix plus 96K new merges that no other script can trigger), and **continued pre-training** of Qwen2.5-0.5B with new embeddings on 2× T4 | Odia costs **4.99×** English on GPT-4o, Santali **13.7×**; lipi-Indic uses **fewer tokens than GPT-4o's and Gemini's tokenizers in 23 of 24 languages** (speaker-weighted **1.30×** vs 1.92× and 1.58×) with a smaller vocabulary than Gemini's; Odia text **8.6× fewer tokens**, the same training text in **19 min instead of 104**, and in equal GPU time held-out Odia predicted **20% better** |
 | **[relay](https://github.com/Shakhtar-Sankur/relay)** · [study](https://shakhtar-sankur.github.io/relay/) | A disaggregated LLM inference cluster: prefill and decode workers in **C++20/CUDA** with my own **flash-attention** and **flash-decoding** kernels, a KV-cache transfer engine, and a **Swift** control plane (C++ interop, OpenAI-compatible streaming API, prefix-aware routing). Fault-tolerant | On a T4, 2,048-token prefill **8.7× faster** and 32-sequence decode **5.4× faster** than its first kernels; streaming hides **99–100%** of the KV transfer (21.6 ms → 0.08 ms); **384 of 384** requests identical to a fault-free run through **60 random worker kills** |
 | **[tandem](https://github.com/Shakhtar-Sankur/tandem)** · [study](https://shakhtar-sankur.github.io/tandem/) | Distributed training with no torch.distributed or NCCL: DDP, **ZeRO-1/2/3** (FSDP-style sharding), **GPipe** and **1F1B** on its own ring all-reduce, and a **C++/CUDA** engine (CUDA IPC, a fused reduce kernel) | On 2× T4, DDP and every ZeRO stage train **bit-identically to PyTorch DDP and FSDP**; all-reduce within **2% of NCCL's bandwidth** at 64–256 MB; the README says where it still loses: **86%** of PyTorch DDP's throughput |
+| **[samebit](https://github.com/Shakhtar-Sankur/samebit)** | Integer-only LLM inference with **the same bits on every chip**: a written spec for a Llama-style decoder in integers, proved int32/int64 overflow bounds, and five independent backends (C99/OpenMP, NumPy, PyTorch, **Apple MLX**, a plain-Python reference) | All five give **one SHA-256 digest over 153 intermediate tensors**, verified in CI on **x86-64 Linux and ARM64 macOS**; prompt prefill matches token-by-token decoding bit for bit |
 
 `C++20` `CUDA` `Swift` `Python` `PyTorch`
 
