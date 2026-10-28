@@ -5,7 +5,7 @@
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
 **satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
-Six fixes merged in 11 days into [**Apple MLX**](https://github.com/ml-explore/mlx/pull/4737), **Meta ExecuTorch**, **Hugging Face OpenEnv**, Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator) and [**JaxMARL**](https://github.com/bold-lab-ai/JaxMARL/pull/206) (merged by its lead author; BOLD Lab: **Oxford, UCL and Imperial**), and pull requests under review at **Google JAX**, **NVIDIA**, **vLLM**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**), [XGrammar](https://github.com/mlc-ai/xgrammar/pull/1012) (**Carnegie Mellon**) and [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**). Co-founder and founding engineer at **Gigzen**.
+Seven fixes merged in 13 days into [**Apple MLX**](https://github.com/ml-explore/mlx/pull/4737), **Meta ExecuTorch** (two), **Hugging Face OpenEnv**, Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator) and [**JaxMARL**](https://github.com/bold-lab-ai/JaxMARL/pull/206) (merged by its lead author; BOLD Lab: **Oxford, UCL and Imperial**), and pull requests under review at **Google JAX**, **NVIDIA**, **vLLM**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**), [XGrammar](https://github.com/mlc-ai/xgrammar/pull/1012) (**Carnegie Mellon**) and [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**). Co-founder and founding engineer at **Gigzen**.
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
@@ -21,11 +21,11 @@ study page with its method, results, stated limits and a citation.
 ## 🏅 Recognition
 
 - **NASA CARA**: I sent CARA my independent reproduction of its Monte Carlo collision probabilities on all 53 of its
-test conjunctions; its operations team lead referred it to CARA's analysis team, which will investigate and report its findings (20 Oct 2026).
+test conjunctions; its operations team lead referred it to CARA's analysis team, and it is now under review by NASA CARA (20 Oct 2026).
 - **Entrepreneur First** (UK): scouted me from my public work alone (Oct 2026), citing tessel's cuBLAS-parity GEMM,
 switchyard's MoE serving and a negative result I chose to publish.
 - **Meta ExecuTorch** ([#23677](https://github.com/pytorch/executorch/pull/23677), merged 16 Oct 2026, approved by two Meta maintainers):
-“LGTM! Thanks for the fix!”
+“LGTM! Thanks for the fix!” A second fix to the same kernels, [#23912](https://github.com/pytorch/executorch/pull/23912), was merged by Meta's Jacob Stevens on 28 Oct 2026.
 - **Apple MLX** ([#4737](https://github.com/ml-explore/mlx/pull/4737), merged 22 Oct 2026 by MLX maintainer @zcbenz after review and approval):
 my fix for a data race in the distributed backend that links Macs for multi-machine training.
 - **Oxford PyZX** ([#563](https://github.com/zxcalc/pyzx/pull/563), merged 22 Oct 2026 by its co-creator John van de Wetering):
@@ -93,7 +93,7 @@ offsets, built only from transposable primitives and in the same order XLA evalu
 - **NVIDIA Ising-Decoding** [#98](https://github.com/NVIDIA/Ising-Decoding/pull/98) (under review): the public-model tests, offline
 smoke test and docs looked only for `.pt` checkpoints, so anyone using the SafeTensors models NVIDIA publishes on
 Hugging Face failed them. They now accept the published files, with tests that fail on `main`.
-- **Meta ExecuTorch** [#23912](https://github.com/pytorch/executorch/pull/23912) (under review): the same kernels checked their zero points
+- **Meta ExecuTorch** [#23912](https://github.com/pytorch/executorch/pull/23912) (**merged** by Meta's Jacob Stevens, 28 Oct 2026): the same kernels checked their zero points
 against the output type instead of the scales' type, so valid models with fp16 scales and fp32 output aborted, and
 the `.out` variants read past the end of their scales (AddressSanitizer: heap-buffer-overflow). With the fix the
 quantized kernel suite passes 86 of 86; without it, all 6 new tests fail. Revised after maintainer review so the 2- and 4-bit export kernels also report the scales' dtype.
@@ -104,7 +104,8 @@ With `causal=True` and a tolerance that matters, all 32 cases pass, and all 32 f
 - **ETH Zurich DaCe** [#2729](https://github.com/spcl/dace/pull/2729) (under review): DaCe, the data-centric compiler from ETH
 Zurich's Scalable Parallel Computing Lab, compiled `numpy.rint` to C's `round`, which rounds halfway values away from zero, so
 compiled programs returned 3 for 2.5 where NumPy returns 2. Fixed for float and complex types; the new test fails without the fix.
-Also reported that `np.max`/`np.min` drop NaN ([#2730](https://github.com/spcl/dace/issues/2730)).
+Also reported that `np.max`/`np.min` drop NaN ([#2730](https://github.com/spcl/dace/issues/2730)). Its maintainer (28 Oct 2026):
+“Seems all good, once we have the CI calmer, I will let these workflows run, once green can be merged.”
 - **Oxford PyZX** [#563](https://github.com/zxcalc/pyzx/pull/563) (**merged** by co-creator John van de Wetering, 22 Oct 2026): PyZX, the ZX-calculus library for quantum
 circuit optimisation, put an X rotation on the wrong qubit after rewriting two CNOTs as a SWAP, so `basic_optimization`,
 `full_optimize` and `phase_block_optimize` returned a different unitary for 25 of 100 random Clifford circuits (0 after the fix).
