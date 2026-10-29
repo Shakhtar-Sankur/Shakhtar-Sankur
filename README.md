@@ -1,11 +1,11 @@
 # Sankur Kundu
 
-**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · 7 fixes merged in 13 days at Apple, Meta, Hugging Face, Oxford's PyZX and JaxMARL · Official Vesuvius ink model finds 79% of real ink moved into an unread scroll (AUC 0.94) · In review at research labs of MIT, Carnegie Mellon and ETH Zurich**
+**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · 8 fixes merged in 14 days at Apple, Meta, Carnegie Mellon, Hugging Face, Oxford's PyZX and JaxMARL · GPU gravitational-wave search re-finds all 71 LIGO O4a events · Official Vesuvius ink model finds 79% of real ink moved into an unread scroll (AUC 0.94) · In review at Google JAX, vLLM, PyTorch, MIT and ETH Zurich**
 
-Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
-**training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
+Sole author of three manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
+**training–inference mismatch** in RL post-training, and on
 **satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
-Seven fixes merged in 13 days into [**Apple MLX**](https://github.com/ml-explore/mlx/pull/4737), **Meta ExecuTorch** (two), **Hugging Face OpenEnv**, Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator) and [**JaxMARL**](https://github.com/bold-lab-ai/JaxMARL/pull/206) (merged by its lead author; BOLD Lab: **Oxford, UCL and Imperial**), and pull requests under review at **Google JAX**, **NVIDIA**, **vLLM**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**), [XGrammar](https://github.com/mlc-ai/xgrammar/pull/1012) (**Carnegie Mellon**) and [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**). Co-founder and founding engineer at **Gigzen**.
+Eight fixes merged in 14 days into [**Apple MLX**](https://github.com/ml-explore/mlx/pull/4737), **Meta ExecuTorch** (two), [**Carnegie Mellon's XGrammar**](https://github.com/mlc-ai/xgrammar/pull/1012) (the default structured-output engine of vLLM, SGLang and NVIDIA TensorRT-LLM), **Hugging Face OpenEnv** (two), Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator) and [**JaxMARL**](https://github.com/bold-lab-ai/JaxMARL/pull/206) (merged by its lead author; BOLD Lab: **Oxford, UCL and Imperial**), and pull requests under review at **Google JAX**, **NVIDIA**, **vLLM**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**) and [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**). Co-founder and founding engineer at **Gigzen**.
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
@@ -28,6 +28,8 @@ switchyard's MoE serving and a negative result I chose to publish.
 “LGTM! Thanks for the fix!” A second fix to the same kernels, [#23912](https://github.com/pytorch/executorch/pull/23912), was merged by Meta's Jacob Stevens on 28 Oct 2026.
 - **Apple MLX** ([#4737](https://github.com/ml-explore/mlx/pull/4737), merged 22 Oct 2026 by MLX maintainer @zcbenz after review and approval):
 my fix for a data race in the distributed backend that links Macs for multi-machine training.
+- **Carnegie Mellon XGrammar** ([#1012](https://github.com/mlc-ai/xgrammar/pull/1012), merged 29 Oct 2026 after approval by maintainer Linzhang Li): XGrammar is the default
+structured-output engine of vLLM, SGLang and NVIDIA TensorRT-LLM; my fix ended a jump-forward decoding crash that had been worked around by switching the feature off.
 - **Oxford PyZX** ([#563](https://github.com/zxcalc/pyzx/pull/563), merged 22 Oct 2026 by its co-creator John van de Wetering):
 “Thanks for the fix! This was a regression from an earlier PR that changed how XPhase gates were handled in optimization.”
 - **JaxMARL** ([#206](https://github.com/bold-lab-ai/JaxMARL/pull/206), NeurIPS 2024; BOLD Lab: Oxford, UCL & Imperial; merged 26 Oct 2026 by lead author Alex Rutherford after his approval):
@@ -113,7 +115,7 @@ circuit optimisation, put an X rotation on the wrong qubit after rewriting two C
 wrapper behind 8 of JaxMARL's Q-learning baselines (QMIX, VDN, IQL, PQN-VDN, SHAQ, TransfQMIX) replaced the first observation of
 every new episode with zeros after an auto-reset, so agents chose their first action blind and trained on it. Agents that die
 mid-episode still get zeros; two of the three new tests fail without the fix.
-- **Carnegie Mellon (CMU) XGrammar** [#1012](https://github.com/mlc-ai/xgrammar/pull/1012) (under review): XGrammar, the structured-output engine used by vLLM and SGLang,
+- **Carnegie Mellon (CMU) XGrammar** [#1012](https://github.com/mlc-ai/xgrammar/pull/1012) (**merged** 29 Oct 2026, approved by maintainer Linzhang Li): XGrammar, the default structured-output engine of vLLM, SGLang and NVIDIA TensorRT-LLM,
 crashed in jump-forward decoding whenever a grammar forced only part of a UTF-8 character (e.g. `"é" | "è"`), the bug behind its issue #132; it now returns
 only whole characters, with four new tests that fail without the fix.
 - **MIT Han Lab nunchaku** [#957](https://github.com/nunchux-ai/nunchaku/pull/957) (under review): `compose_lora` returned a
@@ -143,6 +145,12 @@ forward/backward mode mismatch, so 8 now run under torch.compile and 11 stay ski
 `C++20` `CUDA` `Swift` `Python` `PyTorch`
 
 ---
+
+## 🌌 Gravitational waves
+
+| | What it is | What it measures |
+|---|---|---|
+| **[chirp](https://github.com/Shakhtar-Sankur/chirp)** · [Kaggle run](https://www.kaggle.com/code/sankurkundu/notebooke18924b056) | **An independent GPU search for gravitational waves in public LIGO data**, from general relativity up: the TaylorF2 inspiral to 3.5 post-Newtonian order written from the published coefficients, a template bank placed by measured match, and a two-detector matched filter on the GPU. | Its waveform matches LIGO's LALSimulation to **6 × 10⁻¹⁰ rad** in phase. On one T4, searching 3,886 templates in 17 minutes, it re-finds **all 71** two-detector events of the O4a catalog (GWTC-4.0) with complete data at a median **95%** of their catalog network SNR, 67 within 50 ms; two runs gave identical results. Blind, the loudest trigger is the event in 45 of 71; a χ² veto and gating for the glitches behind the misses are being tested. |
 
 ## 📜 The Herculaneum scrolls
 
