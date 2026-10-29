@@ -5,7 +5,7 @@
 Sole author of three manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, and on
 **satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
-Eight fixes merged in 14 days into [**Apple MLX**](https://github.com/ml-explore/mlx/pull/4737), **Meta ExecuTorch** (two), [**Carnegie Mellon's XGrammar**](https://github.com/mlc-ai/xgrammar/pull/1012) (the default structured-output engine of vLLM, SGLang and NVIDIA TensorRT-LLM), **Hugging Face OpenEnv** (two), Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator) and [**JaxMARL**](https://github.com/bold-lab-ai/JaxMARL/pull/206) (merged by its lead author; BOLD Lab: **Oxford, UCL and Imperial**), and pull requests under review at **Google JAX**, **NVIDIA**, **vLLM**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**) and [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**). Co-founder and founding engineer at **Gigzen**.
+Eight fixes merged in 14 days into [**Apple MLX**](https://github.com/ml-explore/mlx/pull/4737), **Meta ExecuTorch** (two), [**Carnegie Mellon's XGrammar**](https://github.com/mlc-ai/xgrammar/pull/1012) (the default structured-output engine of vLLM, SGLang and NVIDIA TensorRT-LLM), **Hugging Face OpenEnv** (two), Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator) and [**JaxMARL**](https://github.com/bold-lab-ai/JaxMARL/pull/206) (merged by its lead author; BOLD Lab: **Oxford, UCL and Imperial**), and pull requests under review at **Google JAX**, **NVIDIA**, **vLLM**, **SGLang**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**) and [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**). Co-founder and founding engineer at **Gigzen**.
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
@@ -103,6 +103,9 @@ quantized kernel suite passes 86 of 86; without it, all 6 new tests fail. Revise
 checking every output against a float64 reference showed that the prefill tests compared non-causal
 attention with a causal reference, and passed only because their tolerance was larger than the outputs.
 With `causal=True` and a tolerance that matters, all 32 cases pass, and all 32 fail if the bug returns.
+- **SGLang** [#47305](https://github.com/sgl-project/sglang/pull/47305) (under review): a check that streams every tool-call parser against its one-shot
+result showed DeepSeek-V3 tool calls arriving with empty arguments whenever multi-token prediction delivered the
+closing fence and end tokens in one chunk. Two new tests fail without the fix; all 263 parser tests pass with it.
 - **ETH Zurich DaCe** [#2729](https://github.com/spcl/dace/pull/2729) (under review): DaCe, the data-centric compiler from ETH
 Zurich's Scalable Parallel Computing Lab, compiled `numpy.rint` to C's `round`, which rounds halfway values away from zero, so
 compiled programs returned 3 for 2.5 where NumPy returns 2. Fixed for float and complex types; the new test fails without the fix.
