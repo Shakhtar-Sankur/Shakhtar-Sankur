@@ -1,6 +1,6 @@
 # Sankur Kundu
 
-**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · 8 fixes merged in 14 days at Apple, Meta, Carnegie Mellon, Hugging Face, Oxford's PyZX and JaxMARL · GPU gravitational-wave search re-finds all 71 LIGO O4a events · Official Vesuvius ink model finds 79% of real ink moved into an unread scroll (AUC 0.94) · In review at Google JAX, vLLM, PyTorch, MIT and ETH Zurich**
+**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · 8 fixes merged in 14 days at Apple, Meta, Carnegie Mellon, Hugging Face, Oxford's PyZX and JaxMARL · GPU gravitational-wave search finds 62 of 71 LIGO O4a events blind · Official Vesuvius ink model finds 79% of real ink moved into an unread scroll (AUC 0.94) · In review at Google JAX, vLLM, PyTorch, MIT and ETH Zurich**
 
 Sole author of three manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, and on
@@ -150,7 +150,7 @@ forward/backward mode mismatch, so 8 now run under torch.compile and 11 stay ski
 
 | | What it is | What it measures |
 |---|---|---|
-| **[chirp](https://github.com/Shakhtar-Sankur/chirp)** · [Kaggle run](https://www.kaggle.com/code/sankurkundu/notebooke18924b056) | **An independent GPU search for gravitational waves in public LIGO data**, from general relativity up: the TaylorF2 inspiral to 3.5 post-Newtonian order written from the published coefficients, a template bank placed by measured match, and a two-detector matched filter on the GPU. | Its waveform matches LIGO's LALSimulation to **6 × 10⁻¹⁰ rad** in phase. On one T4, searching 3,886 templates in 17 minutes, it re-finds **all 71** two-detector events of the O4a catalog (GWTC-4.0) with complete data at a median **95%** of their catalog network SNR, 67 within 50 ms; two runs gave identical results. Blind, the loudest trigger is the event in 45 of 71; a χ² veto and gating for the glitches behind the misses are being tested. |
+| **[chirp](https://github.com/Shakhtar-Sankur/chirp)** · [Kaggle run](https://www.kaggle.com/code/sankurkundu/notebooke18924b056) | **An independent GPU search for gravitational waves in public LIGO data**, from general relativity up: the TaylorF2 inspiral to 3.5 post-Newtonian order written from the published coefficients, a template bank placed by measured match, and a two-detector matched filter on the GPU. | Its waveform matches LIGO's LALSimulation to **6 × 10⁻¹⁰ rad** in phase. On one T4, searching 3,886 templates in 17 minutes, it re-finds **all 71** two-detector events of the O4a catalog (GWTC-4.0) with complete data at a median **95%** of their catalog network SNR, 67 within 50 ms; two runs gave identical results. Searched blind, with gating and the Allen χ² veto ([run](https://www.kaggle.com/code/sankurkundu/notebook43ba407303)), the loudest trigger in 188 s of data is the real event for **62 of 71** (48 without the veto). |
 
 ## 📜 The Herculaneum scrolls
 
