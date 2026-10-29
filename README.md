@@ -1,6 +1,6 @@
 # Sankur Kundu
 
-**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · 7 fixes merged in 13 days at Apple, Meta, Hugging Face, Oxford's PyZX and JaxMARL · In review at research labs of MIT, Carnegie Mellon and ETH Zurich**
+**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · 7 fixes merged in 13 days at Apple, Meta, Hugging Face, Oxford's PyZX and JaxMARL · Official Vesuvius ink model finds 79% of real ink moved into an unread scroll (AUC 0.94) · In review at research labs of MIT, Carnegie Mellon and ETH Zurich**
 
 Sole author of four manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, on how **scam defence stops at English**, and on
@@ -141,6 +141,16 @@ forward/backward mode mismatch, so 8 now run under torch.compile and 11 stay ski
 | **[samebit](https://github.com/Shakhtar-Sankur/samebit)** | LLM inference in integers with **the same bits on every chip**: a written spec with proved overflow bounds, run on a real model, **Qwen2.5-0.5B (494M parameters)**, with int8 weights, int16 activations and int64 sums; six independent backends (C99/OpenMP, NumPy, PyTorch, **Apple MLX**, **CUDA**, a plain-Python reference) | Within **0.75%** of float32 perplexity on WikiText-2; logits **bit-identical on an NVIDIA Tesla T4 and an x86 CPU** under every split-K order ([public Kaggle run](https://www.kaggle.com/code/sankurkundu/samebit-qwen2-5-0-5b-in-integers-bit-identical-o)), where PyTorch float16 on the same GPU shifts them by up to 0.25 |
 
 `C++20` `CUDA` `Swift` `Python` `PyTorch`
+
+---
+
+## 📜 The Herculaneum scrolls
+
+| | What it is | What it measures |
+|---|---|---|
+| **[ink-sensitivity](https://github.com/Shakhtar-Sankur/ink-sensitivity)** · [Kaggle run](https://www.kaggle.com/code/sankurkundu/notebookf235893e91) | **Injection-recovery tests for the Vesuvius Challenge's ink detection**: can today's official model see letters on a scroll no one has read? Real ink from PHerc. 139, located by its published 2.4 µm ink map, is moved into the CT volume of **PHerc. 800**, a scroll eligible for the First Letters prizes, with bare papyrus moved through the same stroke shapes as the control. | The official 9 µm model finds **79%** of the real-ink windows at a 5% false-positive rate (**AUC 0.94**, 168 ink vs 168 controls; no untouched window flagged), and transplanted ink scores like the same text left in place. Read in reversed depth order it finds **0 of 48** real-text windows, so averaging both directions dilutes it; a pure brightness profile of ink, even at 4×, is barely seen. |
+
+`Python` `PyTorch` `zarr` `CT volumes`
 
 ---
 
