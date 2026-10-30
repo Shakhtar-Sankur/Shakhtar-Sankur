@@ -1,11 +1,11 @@
 # Sankur Kundu
 
-**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · 8 fixes merged in 14 days at Apple, Meta, Carnegie Mellon, Hugging Face, Oxford's PyZX and JaxMARL · GPU gravitational-wave search finds 62 of 71 LIGO O4a events blind · Official Vesuvius ink model finds 79% of real ink moved into an unread scroll (AUC 0.94) · In review at Google JAX, vLLM, PyTorch, MIT and ETH Zurich**
+**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · 9 fixes merged in 15 days at NVIDIA, Apple, Meta, Carnegie Mellon, Hugging Face, Oxford's PyZX and JaxMARL · GPU gravitational-wave search finds 62 of 71 LIGO O4a events blind · Official Vesuvius ink model finds 79% of real ink moved into an unread scroll (AUC 0.94) · In review at Google JAX, vLLM, PyTorch, MIT and ETH Zurich**
 
 Sole author of three manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, and on
 **satellite collision risk**, reproducing NASA CARA's Monte Carlo on all 53 of its test conjunctions.
-Eight fixes merged in 14 days into [**Apple MLX**](https://github.com/ml-explore/mlx/pull/4737), **Meta ExecuTorch** (two), [**Carnegie Mellon's XGrammar**](https://github.com/mlc-ai/xgrammar/pull/1012) (the default structured-output engine of vLLM, SGLang and NVIDIA TensorRT-LLM), **Hugging Face OpenEnv** (two), Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator) and [**JaxMARL**](https://github.com/bold-lab-ai/JaxMARL/pull/206) (merged by its lead author; BOLD Lab: **Oxford, UCL and Imperial**), and pull requests under review at **Google JAX**, **NVIDIA**, **vLLM**, **SGLang**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**) and [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**). Co-founder and founding engineer at **Gigzen**.
+Nine fixes merged in 15 days into [**NVIDIA's Ising-Decoding**](https://github.com/NVIDIA/Ising-Decoding/pull/98) (merged by its maintainer), [**Apple MLX**](https://github.com/ml-explore/mlx/pull/4737), **Meta ExecuTorch** (two), [**Carnegie Mellon's XGrammar**](https://github.com/mlc-ai/xgrammar/pull/1012) (the default structured-output engine of vLLM, SGLang and NVIDIA TensorRT-LLM), **Hugging Face OpenEnv** (two), Oxford's [PyZX](https://github.com/zxcalc/pyzx/pull/563) (merged by its co-creator) and [**JaxMARL**](https://github.com/bold-lab-ai/JaxMARL/pull/206) (merged by its lead author; BOLD Lab: **Oxford, UCL and Imperial**), and pull requests under review at **Google JAX**, **NVIDIA** (a second fix), **vLLM**, **SGLang**, **PyTorch**, and the research labs [MIT Han Lab](https://github.com/nunchux-ai/nunchaku/pull/957) (**MIT**) and [DaCe](https://github.com/spcl/dace/pull/2729) (**ETH Zurich**). Co-founder and founding engineer at **Gigzen**.
 
 Everything below is built from scratch and measured against the best in the field: GPU kernels at
 **cuBLAS parity**, an LLM engine at **1.05× vLLM's** throughput with identical output, a tokenizer that
@@ -92,11 +92,11 @@ with a custom reduction has failed since 2021 ([#7815](https://github.com/jax-ml
 single primitive over (value, tangent) pairs that JAX cannot transpose. The derivative is now a fold over the window
 offsets, built only from transposable primitives and in the same order XLA evaluates the reduction; it also fixes
 [#32548](https://github.com/jax-ml/jax/issues/32548). 2,097 cases pass in 32-bit and 2,578 in 64-bit; the 242 new ones fail on `main`.
-- **NVIDIA Ising-Decoding** [#98](https://github.com/NVIDIA/Ising-Decoding/pull/98) (under review): the public-model tests, offline
+- **NVIDIA Ising-Decoding** [#98](https://github.com/NVIDIA/Ising-Decoding/pull/98) (**merged** 30 Oct 2026 by maintainer Ivan Basov): the public-model tests, offline
 smoke test and docs looked only for `.pt` checkpoints, so anyone using the SafeTensors models NVIDIA publishes on
-Hugging Face failed them. They now accept the published files, with tests that fail on `main`. NVIDIA's team:
-"Thanks for the contribution!"; maintainer Ivan Basov reviewed it line by line (30 Oct 2026),
-and [#99](https://github.com/NVIDIA/Ising-Decoding/pull/99) splits out a second fix at his request: the documented `PREDECODER_MODEL_CHECKPOINT_FILE` was never read.
+Hugging Face failed them. They now accept the published files, with tests that fail on `main`. On merging it, after several
+review rounds: "Merged, thank you for the contribution and for working through the review rounds." Under review:
+[#99](https://github.com/NVIDIA/Ising-Decoding/pull/99) splits out a second fix at his request: the documented `PREDECODER_MODEL_CHECKPOINT_FILE` was never read.
 - **Meta ExecuTorch** [#23912](https://github.com/pytorch/executorch/pull/23912) (**merged** by Meta's Jacob Stevens, 28 Oct 2026): the same kernels checked their zero points
 against the output type instead of the scales' type, so valid models with fp16 scales and fp32 output aborted, and
 the `.out` variants read past the end of their scales (AddressSanitizer: heap-buffer-overflow). With the fix the
