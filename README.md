@@ -14,7 +14,7 @@ pairs of active satellites in public every day and whose collision probabilities
 53 of NASA's test conjunctions, **15–19× faster** per core than NASA's own library, and **samebit**, which runs a 494M-parameter LLM entirely in integers with **identical bits on an NVIDIA GPU and a CPU**. Each project has the scripts and raw results behind its numbers, and a
 study page with its method, results, stated limits and a citation.
 
-🧑‍💻 [portfolio](https://shakhtar-sankur.github.io) · 🔎 [evidence for every claim](https://shakhtar-sankur.github.io/evidence/) · 📄 [résumé](https://shakhtar-sankur.github.io/Sankur-Kundu-Resume.pdf) · 📚 [full CV](https://shakhtar-sankur.github.io/Sankur-Kundu-CV.pdf) · 🌐 [gigzen](https://shakhtar-sankur.github.io/gigzen/) · 📧 sankur.kundu.tw@gmail.com
+🧑‍💻 [portfolio](https://shakhtar-sankur.github.io) · 🔎 [evidence: the original emails](https://drive.google.com/file/d/1dLeScUyhyjEL-Ipwn6sjNaJUHn1SIhZP/view) · 📄 [résumé](https://shakhtar-sankur.github.io/Sankur-Kundu-Resume.pdf) · 📚 [full CV](https://shakhtar-sankur.github.io/Sankur-Kundu-CV.pdf) · 🌐 [gigzen](https://shakhtar-sankur.github.io/gigzen/) · 📧 sankur.kundu.tw@gmail.com
 
 ---
 
