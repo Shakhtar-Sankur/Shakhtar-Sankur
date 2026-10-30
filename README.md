@@ -94,7 +94,8 @@ offsets, built only from transposable primitives and in the same order XLA evalu
 [#32548](https://github.com/jax-ml/jax/issues/32548). 2,097 cases pass in 32-bit and 2,578 in 64-bit; the 242 new ones fail on `main`.
 - **NVIDIA Ising-Decoding** [#98](https://github.com/NVIDIA/Ising-Decoding/pull/98) (under review): the public-model tests, offline
 smoke test and docs looked only for `.pt` checkpoints, so anyone using the SafeTensors models NVIDIA publishes on
-Hugging Face failed them. They now accept the published files, with tests that fail on `main`.
+Hugging Face failed them. They now accept the published files, with tests that fail on `main`. NVIDIA's team:
+"Thanks for the contribution!"; maintainer Ivan Basov reviewed it line by line (30 Oct 2026).
 - **Meta ExecuTorch** [#23912](https://github.com/pytorch/executorch/pull/23912) (**merged** by Meta's Jacob Stevens, 28 Oct 2026): the same kernels checked their zero points
 against the output type instead of the scales' type, so valid models with fp16 scales and fp32 output aborted, and
 the `.out` variants read past the end of their scales (AddressSanitizer: heap-buffer-overflow). With the fix the
