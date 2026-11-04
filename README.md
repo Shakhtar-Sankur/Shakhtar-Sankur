@@ -1,6 +1,6 @@
 # Sankur Kundu
 
-**ML systems engineer and researcher · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · 10 fixes merged in 18 days at NVIDIA, Apple, Meta, Carnegie Mellon, Hugging Face, Oxford's PyZX and JaxMARL · GPU gravitational-wave search finds 62 of 71 LIGO O4a events blind · Official Vesuvius ink model finds 79% of real ink moved into an unread scroll (AUC 0.94) · In review at Google JAX, vLLM, PyTorch, MIT and ETH Zurich**
+**ML systems engineer and researcher · Full lab submitted to Harvard's ML Systems textbook (PR #2175) · Matched NASA on 53/53 cases, 15× faster, now under review by NASA CARA · GPU quantum decoder bit-identical to IBM's, 28.7× faster per shot · cuBLAS-parity compiler · Tokenizer that beats GPT-4o and Gemini in 23 of 24 Indian languages · 10 fixes merged in 18 days at NVIDIA, Apple, Meta, Carnegie Mellon, Hugging Face, Oxford's PyZX and JaxMARL · GPU gravitational-wave search finds 62 of 71 LIGO O4a events blind · Official Vesuvius ink model finds 79% of real ink moved into an unread scroll (AUC 0.94) · In review at Google JAX, vLLM, PyTorch, IBM, MIT and ETH Zurich**
 
 Sole author of three manuscripts: on the **token tax** that Indian languages pay in LLMs, on a silent
 **training–inference mismatch** in RL post-training, and on
@@ -20,10 +20,12 @@ study page with its method, results, stated limits and a citation.
 
 ## 🏅 Recognition
 
+- **Harvard's Machine Learning Systems textbook** (Prof. Vijay Janapa Reddi): I built and submitted a full lab,
+*The Same-Bits Contract*, on why temperature-0 LLMs are not deterministic ([**pull request #2175**](https://github.com/harvard-edge/cs249r_book/pull/2175), 4 Nov 2026).
+It follows the book's lab protocol, its math is a new module of the book's simulator, and it passes the book's own test suites
+(2,658 simulator tests, 0 failures) and a full student run in the browser. Its team on the proposal: "the feature looks great" ([discussion](https://github.com/harvard-edge/cs249r_book/discussions/2171)).
 - **NASA CARA**: I sent CARA my independent reproduction of its Monte Carlo collision probabilities on all 53 of its
 test conjunctions; its operations team lead referred it to CARA's analysis team, and it is now under review by NASA CARA (20 Oct 2026).
-- **Harvard's Machine Learning Systems textbook**: its team welcomed my proposed lab on why temperature-0 LLMs are not
-deterministic, "the feature looks great", and referred it to the book's author, Prof. Vijay Janapa Reddi ([discussion](https://github.com/harvard-edge/cs249r_book/discussions/2171), Nov 2026).
 - **Entrepreneur First** (UK): scouted me from my public work alone (Oct 2026), citing tessel's cuBLAS-parity GEMM,
 switchyard's MoE serving and a negative result I chose to publish.
 - **Meta ExecuTorch** ([#23677](https://github.com/pytorch/executorch/pull/23677), merged 16 Oct 2026, approved by two Meta maintainers):
@@ -107,6 +109,10 @@ quantized kernel suite passes 86 of 86; without it, all 6 new tests fail. Revise
 checking every output against a float64 reference showed that the prefill tests compared non-causal
 attention with a causal reference, and passed only because their tolerance was larger than the outputs.
 With `causal=True` and a tolerance that matters, all 32 cases pass, and all 32 fail if the bug returns.
+- **IBM Relay-BP** [#49](https://github.com/trmue/relay/pull/49) (under review): IBM's reference decoder for its quantum LDPC codes answered the same shot
+differently depending on batch order, because a random generator was seeded once per decoder instead of once per decode.
+I reported it with a reproduction ([#47](https://github.com/trmue/relay/issues/47)); its maintainer chose the first of my two fixes ("thank you for opening this! I think 1. is fine!"),
+which #49 implements: serial and parallel batches now agree on all 2,000 test shots (1,970 differed before), with a test that fails without it.
 - **SGLang** [#47305](https://github.com/sgl-project/sglang/pull/47305) (under review): a check that streams every tool-call parser against its one-shot
 result showed DeepSeek-V3 tool calls arriving with empty arguments whenever multi-token prediction delivered the
 closing fence and end tokens in one chunk. Two new tests fail without the fix; all 263 parser tests pass with it.
