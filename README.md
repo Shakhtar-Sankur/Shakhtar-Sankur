@@ -2,8 +2,8 @@
 
 GPU software for AI and science, with every result checked against a reference implementation. Bhubaneswar, India · Co-founder, Gigzen.
 
-- **13 fixes merged in 21 days** into NVIDIA, Apple, Meta, Tencent, IBM Quantum, the Massachusetts Institute of Technology, Hugging Face, Carnegie Mellon University and the University of Oxford, several by the projects' own creators
-- **Public-sector science software:** fixes at the US Department of Energy national laboratories, the European Centre for Medium-Range Weather Forecasts, the UK Met Office, the Swiss National Supercomputing Centre and the Massachusetts Institute of Technology (one merged, one approved by the lead of the US Department of Energy's Kokkos at Los Alamos National Laboratory, four in review)
+- **14 fixes merged in 21 days** into NVIDIA, Apple, Meta, Tencent, IBM Quantum, the Massachusetts Institute of Technology, the US Department of Energy national laboratories, Hugging Face, Carnegie Mellon University and the University of Oxford, several by the projects' own creators
+- **Public-sector science software:** fixes at the US Department of Energy national laboratories (Kokkos, **merged** by its lead at Los Alamos National Laboratory after approval from Oak Ridge National Laboratory, in the Kokkos 5.4 release notes), the Massachusetts Institute of Technology (merged), the European Organization for Nuclear Research (CERN), the European Centre for Medium-Range Weather Forecasts, the UK Met Office and the Swiss National Supercomputing Centre (two merged, one approved, four in review)
 - **Under review by NASA Conjunction Assessment Risk Analysis (CARA):** my reproduction of its collision probabilities, 53 of 53 test cases, 15–19× faster per core
 
 [Portfolio](https://shakhtar-sankur.github.io) · [Evidence for every claim](https://shakhtar-sankur.github.io/evidence/) · [Résumé](https://shakhtar-sankur.github.io/Sankur-Kundu-Resume.pdf) · [CV](https://shakhtar-sankur.github.io/Sankur-Kundu-CV.pdf) · sankur.kundu.tw@gmail.com
@@ -27,10 +27,11 @@ GPU software for AI and science, with every result checked against a reference i
 
 | Sector | Organisation | Project | Status |
 |---|---|---|---|
-| Energy and national security | US Department of Energy national laboratories | Kokkos | **Approved:** [#9738](https://github.com/kokkos/kokkos/pull/9738), by Kokkos lead Damien Lebrun-Grandié (Los Alamos National Laboratory); reviewed by Andrey Prokopenko (Oak Ridge National Laboratory) |
+| Energy and national security | US Department of Energy national laboratories | Kokkos | **Merged:** [#9738](https://github.com/kokkos/kokkos/pull/9738) by Kokkos lead Damien Lebrun-Grandié (Los Alamos National Laboratory), approved by Daniel Arndt (Oak Ridge National Laboratory), reviewed by Andrey Prokopenko (Oak Ridge); in the [Kokkos 5.4 changelog](https://github.com/kokkos/kokkos/issues/9714) |
 | Weather and climate | European Centre for Medium-Range Weather Forecasts (intergovernmental, 35 states) | ecCodes | In review: [#684](https://github.com/ecmwf/eccodes/pull/684) |
-| Weather and climate | UK Met Office and Science and Technology Facilities Council Hartree Centre | PSyclone | In review: [#3668](https://github.com/stfc/PSyclone/pull/3668) |
+| Weather and climate | UK Met Office and Science and Technology Facilities Council Hartree Centre | PSyclone | In review: [#3668](https://github.com/stfc/PSyclone/pull/3668) (maintainer: "otherwise it looks good") |
 | National supercomputing | Swiss National Supercomputing Centre, ETH Zurich | ReFrame | In review: [#3750](https://github.com/reframe-hpc/reframe/pull/3750) |
+| Particle physics | European Organization for Nuclear Research (CERN) | Rucio, Large Hadron Collider data management | In review: [#8862](https://github.com/rucio/rucio/pull/8862) |
 | Academic research | Massachusetts Institute of Technology | MEEP | **Merged:** [#3364](https://github.com/NanoComp/meep/pull/3364); approved: [#3363](https://github.com/NanoComp/meep/pull/3363) ("the correct approach") |
 
 Also in review: Google JAX, Google DeepMind MuJoCo, Microsoft ONNX Script, vLLM, SGLang, PyTorch, Allen Institute for AI OLMo, MIT Han Lab, ETH Zurich DaCe. A lab submitted to Harvard's Machine Learning Systems textbook ([#2175](https://github.com/harvard-edge/cs249r_book/pull/2175)). Scouted by Entrepreneur First (UK) from public work alone.
