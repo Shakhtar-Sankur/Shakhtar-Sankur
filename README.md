@@ -12,6 +12,7 @@ GPU software for AI and science, with every result checked against a reference i
 
 | Project | Fix | Pull request |
 |---|---|---|
+| **US Department of Energy national laboratories, Kokkos** | GPU sort for types without a default constructor (CUDA and HIP); merged by Kokkos lead Damien Lebrun-Grandié (Los Alamos National Laboratory) after approval by Daniel Arndt (Oak Ridge National Laboratory); in the [Kokkos 5.4 changelog](https://github.com/kokkos/kokkos/issues/9714) | [#9738](https://github.com/kokkos/kokkos/pull/9738) |
 | **Tencent ncnn** | Vulkan GPU NaNs in Mish; approved, extended and merged by its creator nihui | [#7239](https://github.com/Tencent/ncnn/pull/7239) |
 | **Relay-BP, IBM Quantum** | Decodings changed with batch order (1,970 of 2,000 shots → 0); merged by its first author, Tristan Müller | [#49](https://github.com/trmue/relay/pull/49) |
 | **Massachusetts Institute of Technology (MIT) MEEP** | Remaining-time estimates up to 4× too short, now 0.97–1.02× the real time; merged by its original lead developer, Ardavan Oskooi | [#3364](https://github.com/NanoComp/meep/pull/3364) |
