@@ -1,6 +1,6 @@
 # Sankur Kundu
 
-GPU software for AI and science, with every result checked against a reference implementation. Kolkata, India · Co-founder, Gigzen.
+GPU software for AI and science, with every result checked against a reference implementation. Bhubaneswar, India · Co-founder, Gigzen.
 
 - **11 fixes merged in 21 days** into NVIDIA, Apple, Meta, Tencent, Hugging Face, Carnegie Mellon University and the University of Oxford
 - **6 pull requests in review** at science software of the US Department of Energy, the European Centre for Medium-Range Weather Forecasts, the UK Met Office, the Swiss National Supercomputing Centre and MIT
