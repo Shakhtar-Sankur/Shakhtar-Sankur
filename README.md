@@ -1,8 +1,12 @@
 # Sankur Kundu
 
+### Fourteen fixes, merged by the people who lead the projects.
+
+**Damien Lebrun-Grandié**, who leads Kokkos at Los Alamos National Laboratory (US Department of Energy) · **Tristan Müller**, first author of Relay-BP (IBM Quantum) · **Ardavan Oskooi**, original lead developer of MEEP (Massachusetts Institute of Technology) · **nihui**, creator of Tencent ncnn · **John van de Wetering**, co-creator of PyZX (University of Oxford) · and the maintainers at NVIDIA, Apple and Meta. All in 21 days.
+
 GPU software for AI and science, with every result checked against a reference implementation. Bhubaneswar, India · Co-founder, Gigzen.
 
-- **14 fixes merged in 21 days** into NVIDIA, Apple, Meta, Tencent, IBM Quantum, the Massachusetts Institute of Technology, the US Department of Energy national laboratories, Hugging Face, Carnegie Mellon University and the University of Oxford, several by the projects' own creators
+- **14 fixes merged in 21 days** into the US Department of Energy national laboratories, NVIDIA, Apple, Meta, IBM Quantum, the Massachusetts Institute of Technology, Tencent, Hugging Face, Carnegie Mellon University and the University of Oxford, several by the projects' own creators
 - **Public-sector science software:** fixes at the US Department of Energy national laboratories (Kokkos, **merged** by its lead at Los Alamos National Laboratory after approval from Oak Ridge National Laboratory, in the Kokkos 5.4 release notes), the Massachusetts Institute of Technology (merged), the European Organization for Nuclear Research (CERN), the European Centre for Medium-Range Weather Forecasts, the UK Met Office and the Swiss National Supercomputing Centre (two merged, one approved, four in review)
 - **Under review by NASA Conjunction Assessment Risk Analysis (CARA):** my reproduction of its collision probabilities, 53 of 53 test cases, 15–19× faster per core
 
