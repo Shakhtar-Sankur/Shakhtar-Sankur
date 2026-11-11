@@ -2,9 +2,9 @@
 
 ### NASA's collision-risk team, a Harvard professor, and eighteen fixes merged by the people who lead the projects.
 
-> **NASA Conjunction Assessment Risk Analysis (CARA)**, its Analysis Team on my two findings: *"your sampling space results indeed appear to be fully consistent with what we see in CARA operations"* · *"your time window results indeed appear to be fully consistent with what we see in CARA operations"*
+> **NASA Conjunction Assessment Risk Analysis (CARA)**, its Analysis Team on my two findings: *"your sampling space results indeed appear to be fully consistent with what we see in CARA operations"* · *"your time window results indeed appear to be fully consistent with what we see in CARA operations"* · [signed email from nasa.gov](https://drive.google.com/file/d/1dLeScUyhyjEL-Ipwn6sjNaJUHn1SIhZP/view), evidence pages 150–155
 >
-> **Prof. Vijay Janapa Reddi, Harvard University**, merging my lab into his Machine Learning Systems textbook: *"Merged, thanks @Shakhtar-Sankur. I reran the experiments module and every result in your table reproduces."* He then [listed me among the textbook's contributors](https://harvard-edge.github.io/cs249r_book_dev/about/contributors.html).
+> **Prof. Vijay Janapa Reddi, Harvard University**, merging my lab into his Machine Learning Systems textbook: *"Merged, thanks @Shakhtar-Sankur. I reran the experiments module and every result in your table reproduces."* He then [listed me among the textbook's contributors](https://harvard-edge.github.io/cs249r_book_dev/about/contributors.html). · [merge comment on #2175](https://github.com/harvard-edge/cs249r_book/pull/2175) · [signed emails](https://drive.google.com/file/d/1dLeScUyhyjEL-Ipwn6sjNaJUHn1SIhZP/view), evidence pages 156–163
 
 **Damien Lebrun-Grandié**, who leads Kokkos at Los Alamos National Laboratory (US Department of Energy) · **Tristan Müller**, first author of Relay-BP (IBM Quantum) · **Ardavan Oskooi**, original lead developer of MEEP (Massachusetts Institute of Technology) · **Bruno P. Kinoshita**, Autosubmit maintainer (Barcelona Supercomputing Center) · the **PSyclone** maintainers (UK Met Office and Science and Technology Facilities Council) · **nihui**, creator of Tencent ncnn · **John van de Wetering**, co-creator of PyZX (University of Oxford) · and the maintainers at NVIDIA, Apple and Meta. All in 25 days.
 
@@ -15,7 +15,7 @@ GPU software for AI and science, with every result checked against a reference i
 - **NASA Conjunction Assessment Risk Analysis (CARA):** my reproduction of its collision probabilities, 53 of 53 test cases, 15–19× faster per core; its Analysis Team Lead, Eliot Toumey, answered both of my findings: "fully consistent with what we see in CARA operations"
 - **Harvard University:** a full lab merged into the Machine Learning Systems textbook by its author, Prof. Vijay Janapa Reddi, after he reran it; [listed as a contributor](https://harvard-edge.github.io/cs249r_book_dev/about/contributors.html) for code, doc and test
 
-[Portfolio](https://shakhtar-sankur.github.io) · [Evidence for every claim](https://drive.google.com/file/d/1dLeScUyhyjEL-Ipwn6sjNaJUHn1SIhZP/view) · [Résumé](https://shakhtar-sankur.github.io/Sankur-Kundu-Resume.pdf) · [CV](https://shakhtar-sankur.github.io/Sankur-Kundu-CV.pdf) · sankur.kundu.tw@gmail.com
+[Portfolio](https://shakhtar-sankur.github.io) · [**Original emails (signed, 173 pages)**](https://drive.google.com/file/d/1dLeScUyhyjEL-Ipwn6sjNaJUHn1SIhZP/view) · [Résumé](https://shakhtar-sankur.github.io/Sankur-Kundu-Resume.pdf) · [CV](https://shakhtar-sankur.github.io/Sankur-Kundu-CV.pdf) · [sankur.kundu.tw@gmail.com](mailto:sankur.kundu.tw@gmail.com)
 
 ### Merged
 
@@ -56,6 +56,7 @@ Also in review: Google JAX, Google DeepMind MuJoCo, Microsoft ONNX Script, vLLM,
 | | |
 |---|---|
 | [**kessler**](https://github.com/Shakhtar-Sankur/kessler) | Screens all 140 million pairs of active satellites every day, in public; collision probabilities agree with NASA CARA's on 53 of 53 test cases; CARA's Analysis Team: "fully consistent with what we see in CARA operations" |
+| [**samebit**](https://github.com/Shakhtar-Sankur/samebit) | A 494M-parameter LLM run entirely in integers, bit-identical on an NVIDIA T4 GPU and an x86 CPU, within 0.75% of float32 perplexity; its lab is [merged into Harvard's Machine Learning Systems textbook](https://github.com/harvard-edge/cs249r_book/pull/2175) |
 | [**syndrome**](https://github.com/Shakhtar-Sankur/syndrome) | GPU decoder for IBM's quantum LDPC codes, bit-identical to IBM's reference, 28.7× faster per shot |
 | [**tessel**](https://github.com/Shakhtar-Sankur/tessel) | Tile-language compiler for CUDA, Metal and TPU; GEMM at cuBLAS parity, an engine at 1.05× vLLM's throughput |
 | [**lipi**](https://github.com/Shakhtar-Sankur/lipi) | Tokenizer that needs fewer tokens than GPT-4o's and Gemini's in 23 of 24 Indian languages |
