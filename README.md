@@ -8,7 +8,7 @@
 >
 > **European Space Agency**: Dario Izzo, co-author of its pagmo2 optimisation library, merged my fix to a crash open since May 2024 [the day I opened it](https://github.com/esa/pagmo2/pull/660) · [signed email](https://drive.google.com/file/d/1dLeScUyhyjEL-Ipwn6sjNaJUHn1SIhZP/view), evidence pages 175–178
 >
-> **US National Institute of Standards and Technology (NIST)**: Jonathan Guyer, one of the authors of FiPy, NIST's solver for partial differential equations, [merged my fix](https://github.com/usnistgov/fipy/pull/1243) after a review round · [email](https://drive.google.com/file/d/1dLeScUyhyjEL-Ipwn6sjNaJUHn1SIhZP/view), evidence pages 198–201
+> **US National Institute of Standards and Technology (NIST)**: Jonathan Guyer, one of the authors of FiPy, NIST's solver for partial differential equations, [merged my fix](https://github.com/usnistgov/fipy/pull/1243) after a review round · [signed email](https://drive.google.com/file/d/1dLeScUyhyjEL-Ipwn6sjNaJUHn1SIhZP/view), evidence pages 198–202
 
 **Dario Izzo**, co-author of pagmo2 (European Space Agency) · **Jonathan Guyer**, one of FiPy's authors (US National Institute of Standards and Technology) · **Damien Lebrun-Grandié**, who leads Kokkos at Los Alamos National Laboratory (US Department of Energy) · **Raul Metsma**, libdigidocpp maintainer (Estonian Information System Authority) · **Tristan Müller**, first author of Relay-BP (IBM Quantum) · **Ardavan Oskooi**, original lead developer of MEEP (Massachusetts Institute of Technology) · **Bruno P. Kinoshita**, Autosubmit maintainer (Barcelona Supercomputing Center) · the **PSyclone** maintainers (UK Met Office and Science and Technology Facilities Council) · **nihui**, creator of Tencent ncnn · **John van de Wetering**, co-creator of PyZX (University of Oxford) · and the maintainers at NVIDIA, Apple and Meta.
 
@@ -19,7 +19,7 @@ GPU software for AI and science, with every result checked against a reference i
 - **NASA Conjunction Assessment Risk Analysis (CARA):** my reproduction of its collision probabilities, 53 of 53 test cases, 15–19× faster per core; its Analysis Team Lead, Eliot Toumey, answered both of my findings: "fully consistent with what we see in CARA operations"
 - **Harvard University:** a full lab merged into the Machine Learning Systems textbook by its author, Prof. Vijay Janapa Reddi, after he reran it; [listed as a contributor](https://harvard-edge.github.io/cs249r_book_dev/about/contributors.html) for code, doc and test; he also merged my fix to its mlsysim simulator, which modelled FP32 work on the T4 about 8× too fast
 
-[Portfolio](https://shakhtar-sankur.github.io) · [**Original emails (signed, 215 pages)**](https://drive.google.com/file/d/1dLeScUyhyjEL-Ipwn6sjNaJUHn1SIhZP/view) · [Résumé](https://shakhtar-sankur.github.io/Sankur-Kundu-Resume.pdf) · [CV](https://shakhtar-sankur.github.io/Sankur-Kundu-CV.pdf) · [sankur.kundu.tw@gmail.com](mailto:sankur.kundu.tw@gmail.com)
+[Portfolio](https://shakhtar-sankur.github.io) · [**Original emails (signed, 216 pages)**](https://drive.google.com/file/d/1dLeScUyhyjEL-Ipwn6sjNaJUHn1SIhZP/view) · [Résumé](https://shakhtar-sankur.github.io/Sankur-Kundu-Resume.pdf) · [CV](https://shakhtar-sankur.github.io/Sankur-Kundu-CV.pdf) · [sankur.kundu.tw@gmail.com](mailto:sankur.kundu.tw@gmail.com)
 
 ### Merged
 
