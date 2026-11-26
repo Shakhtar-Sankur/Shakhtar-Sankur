@@ -17,6 +17,11 @@ Machine learning systems engineer. I build graphics processing unit (GPU) softwa
 > *"Every result in your table reproduces."*
 > **Prof. Vijay Janapa Reddi, Harvard University**, merging my lab into his Machine Learning Systems textbook ([#2175](https://github.com/harvard-edge/cs249r_book/pull/2175))
 
+<table><tr>
+<td width="46%"><img src="assets/at-desk.jpg" alt="Sankur Kundu working at a laptop in an office in Bhubaneswar" width="100%"></td>
+<td><b>At work in Bhubaneswar, India.</b><br><br>Most of my work runs on one NVIDIA T4 graphics card in public Kaggle notebooks, so anyone can rerun the numbers. Each bug below was found by running the project's own tests, and fixed with a test that fails without the fix.</td>
+</tr></table>
+
 ### 30 fixes merged by the people who lead the projects
 
 | Organisation | What I fixed | Approved or merged by |
