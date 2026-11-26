@@ -1,5 +1,8 @@
 <p align="center">
-  <a href="https://shakhtar-sankur.github.io"><img src="assets/banner.png" alt="Sankur Kundu: verified by NASA and Harvard; 30 fixes merged by the people who lead the projects" width="100%"></a>
+  <a href="https://shakhtar-sankur.github.io"><picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.png">
+    <img src="assets/banner-light.png" alt="Sankur Kundu, machine learning systems engineer: verified by NASA and Harvard; 30 fixes merged by the people who lead Google, the European Space Agency, ITER, Idaho, Los Alamos and Oak Ridge National Laboratories, the US National Institute of Standards and Technology and more" width="100%">
+  </picture></a>
 </p>
 
 <p align="center">
