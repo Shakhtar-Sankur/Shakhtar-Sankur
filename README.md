@@ -1,6 +1,7 @@
 <p align="center">
   <a href="https://shakhtar-sankur.github.io"><picture>
-    <img src="assets/banner-light.png" alt="Sankur Kundu, machine learning systems engineer: verified by NASA and Harvard; 30 fixes merged by the people who lead Google, the European Space Agency, ITER, Idaho, Los Alamos and Oak Ridge National Laboratories, the US National Institute of Standards and Technology and more" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+    <img src="assets/banner-light.svg" alt="Sankur Kundu, machine learning systems engineer: verified by NASA and Harvard; 30 fixes merged by the people who lead Google, the European Space Agency, ITER, Idaho, Los Alamos and Oak Ridge National Laboratories, the US National Institute of Standards and Technology and more" width="100%">
   </picture></a>
 </p>
 
@@ -9,6 +10,7 @@
   <a href="https://www.linkedin.com/in/sankur-kundu"><img src="https://img.shields.io/badge/LinkedIn-sankur--kundu-0e1116?style=flat-square" alt="LinkedIn"></a>
   <a href="mailto:sankur.kundu.tw@gmail.com"><img src="https://img.shields.io/badge/Email-sankur.kundu.tw%40gmail.com-0e1116?style=flat-square" alt="Email"></a>
   <a href="https://drive.google.com/file/d/1dLeScUyhyjEL-Ipwn6sjNaJUHn1SIhZP/view"><img src="https://img.shields.io/badge/Evidence-signed%20original%20emails-a3410b?style=flat-square" alt="Evidence"></a>
+  <a href="https://shakhtar-sankur.github.io/#proof"><img src="https://img.shields.io/badge/Live%20proof-run%20it%20on%20your%20GPU-0e8f86?style=flat-square" alt="Live proof: run it on your GPU"></a>
 </p>
 
 Machine learning systems engineer. I build graphics processing unit (GPU) software for artificial intelligence (AI) and science, and prove every result against an independent reference.
@@ -35,6 +37,8 @@ Machine learning systems engineer. I build graphics processing unit (GPU) softwa
 | **ITER** · [IMAS-Python #152](https://github.com/iterorganization/IMAS-Python/pull/152) | Two fixes to the fusion project's data library | Olivier Hoenen |
 | **US National Institute of Standards and Technology** · [FiPy #1243](https://github.com/usnistgov/fipy/pull/1243) | Boundary distances truncated on integer grids | Jonathan Guyer, one of its authors |
 | **gem5** · [#3762](https://github.com/gem5/gem5/pull/3762) | Read 1.8e-09 as 1.8 − 9 (−61,489.8 instead of 0.285) | Jason Lowe-Power, gem5 lead |
+
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/merge-map-dark.svg"><img src="assets/merge-map-light.svg" alt="Timeline of all 30 fixes at the date GitHub records each merge, in three lanes: government and public science, universities and research, industry" width="100%"></picture>
 
 Also merged at the Massachusetts Institute of Technology, the UK Met Office (twice), NVIDIA, Apple, Meta, IBM Quantum, Tencent, the Barcelona Supercomputing Center, Estonia's Information System Authority, the University of Oxford, Carnegie Mellon University, Hugging Face and Contrails.org. [See all 30 →](https://shakhtar-sankur.github.io/#merged)
 
