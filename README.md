@@ -3,11 +3,11 @@
 </p>
 
 <p align="center">
-  <a href="https://shakhtar-sankur.github.io"><img src="https://img.shields.io/badge/Portfolio-shakhtar--sankur.github.io-143a9a?style=flat-square" alt="Portfolio"></a>
-  <a href="https://www.linkedin.com/in/sankur-kundu"><img src="https://img.shields.io/badge/LinkedIn-sankur--kundu-111111?style=flat-square" alt="LinkedIn"></a>
-  <a href="mailto:sankur.kundu.tw@gmail.com"><img src="https://img.shields.io/badge/Email-sankur.kundu.tw%40gmail.com-111111?style=flat-square" alt="Email"></a>
-  <a href="https://drive.google.com/file/d/1dLeScUyhyjEL-Ipwn6sjNaJUHn1SIhZP/view"><img src="https://img.shields.io/badge/Evidence-signed%20original%20emails-d62b36?style=flat-square" alt="Evidence"></a>
-  <a href="https://shakhtar-sankur.github.io/#proof"><img src="https://img.shields.io/badge/Live%20proof-run%20it%20on%20your%20GPU-143a9a?style=flat-square" alt="Live proof: run it on your GPU"></a>
+  <a href="https://shakhtar-sankur.github.io"><img src="https://img.shields.io/badge/Portfolio-shakhtar--sankur.github.io-14275a?style=flat-square" alt="Portfolio"></a>
+  <a href="https://www.linkedin.com/in/sankur-kundu"><img src="https://img.shields.io/badge/LinkedIn-sankur--kundu-0e0e0e?style=flat-square" alt="LinkedIn"></a>
+  <a href="mailto:sankur.kundu.tw@gmail.com"><img src="https://img.shields.io/badge/Email-sankur.kundu.tw%40gmail.com-0e0e0e?style=flat-square" alt="Email"></a>
+  <a href="https://drive.google.com/file/d/1dLeScUyhyjEL-Ipwn6sjNaJUHn1SIhZP/view"><img src="https://img.shields.io/badge/Evidence-signed%20original%20emails-b5132b?style=flat-square" alt="Evidence"></a>
+  <a href="https://shakhtar-sankur.github.io/#proof"><img src="https://img.shields.io/badge/Live%20proof-run%20it%20on%20your%20GPU-b08a2e?style=flat-square" alt="Live proof: run it on your GPU"></a>
 </p>
 
 Machine learning systems engineer. I build graphics processing unit (GPU) software for artificial intelligence (AI) and science, and prove every result against an independent reference.
