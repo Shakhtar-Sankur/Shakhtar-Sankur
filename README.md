@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://shakhtar-sankur.github.io"><img src="assets/banner-light.svg" alt="Sankur Kundu, machine learning systems engineer: verified by NASA and Harvard; 30 fixes merged by the people who lead Google, the European Space Agency, ITER, Idaho, Los Alamos and Oak Ridge National Laboratories, the US National Institute of Standards and Technology and more" width="100%"></a>
+  <a href="https://shakhtar-sankur.github.io"><img src="assets/banner-case.svg" alt="Sankur Kundu, machine learning systems engineer: verified by NASA and Harvard; 30 fixes merged by the people who lead Google, the European Space Agency, ITER, Idaho, Los Alamos and Oak Ridge National Laboratories, the US National Institute of Standards and Technology and more" width="100%"></a>
 </p>
 
 <p align="center">
@@ -32,7 +32,7 @@ Based in Bhubaneswar, India. Most of my work runs on one NVIDIA T4 graphics card
 | **US National Institute of Standards and Technology** · [FiPy #1243](https://github.com/usnistgov/fipy/pull/1243) | Boundary distances truncated on integer grids | Jonathan Guyer, one of its authors |
 | **gem5** · [#3762](https://github.com/gem5/gem5/pull/3762) | Read 1.8e-09 as 1.8 − 9 (−61,489.8 instead of 0.285) | Jason Lowe-Power, gem5 lead |
 
-<img src="assets/merge-map-light.svg" alt="Timeline of all 30 fixes at the date GitHub records each merge, in three lanes: government and public science, universities and research, industry" width="100%">
+<img src="assets/merge-map-case.svg" alt="Timeline of all 30 fixes at the date GitHub records each merge, in three lanes: government and public science, universities and research, industry" width="100%">
 
 Also merged at the Massachusetts Institute of Technology, the UK Met Office (twice), NVIDIA, Apple, Meta, IBM Quantum, Tencent, the Barcelona Supercomputing Center, Estonia's Information System Authority, the University of Oxford, Carnegie Mellon University, Hugging Face and Contrails.org. [See all 30 →](https://shakhtar-sankur.github.io/#merged)
 
